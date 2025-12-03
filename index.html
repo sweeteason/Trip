@@ -63,7 +63,7 @@
         }
     </script>
     <style>
-        /* 新增：定義安全區域 padding */
+        /* 關鍵修正：定義 iPhone 底部安全區域 */
         .pb-safe {
             padding-bottom: env(safe-area-inset-bottom);
         }
@@ -75,7 +75,8 @@
             background-size: 50px 50px;
             color: #5E4B35;
             -webkit-tap-highlight-color: transparent;
-            overflow: hidden;
+            /* 修正：Body 不需要 hidden，讓瀏覽器自然捲動 */
+            min-height: 100vh;
         }
 
         /* 雪花背景 */
@@ -108,7 +109,8 @@
         .tab-content {
             display: none;
             animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            padding-bottom: 120px;
+            /* 修正：底部 padding 加大，避免被 Fixed 導覽列擋住 */
+            padding-bottom: 140px;
         }
 
             .tab-content.active {
@@ -223,7 +225,7 @@
         }
     </style>
 </head>
-<body class="font-sans h-[100dvh] flex flex-col relative text-sketch-ink">
+<body class="font-sans flex flex-col relative text-sketch-ink">
 
     <div class="snow-container">
         <div class="snowflake" style="left: 10%; animation-delay: 0s;">❄</div>
@@ -256,7 +258,7 @@
         </div>
     </header>
 
-    <main class="flex-1 overflow-y-auto hide-scrollbar relative p-2 z-10">
+    <main class="w-full relative p-2 z-10 pb-32">
 
         <div id="tab-plan" class="tab-content active">
             <div id="date-scroll" class="flex overflow-x-auto gap-3 pb-2 mb-4 hide-scrollbar sticky top-0 z-20 py-3 px-1 -mx-2 px-3 bg-gradient-to-b from-sketch-bg via-sketch-bg to-transparent">
@@ -408,7 +410,7 @@
 
     </main>
 
-    <nav class="bg-white/90 backdrop-blur-md border-t-2 border-sketch-ink shrink-0 pb-safe z-30 relative" style="border-radius: 25px 25px 0 0; box-shadow: 0 -4px 10px rgba(0,0,0,0.05);">
+    <nav class="fixed bottom-0 left-0 w-full bg-white/90 backdrop-blur-md border-t-2 border-sketch-ink pb-safe z-30" style="border-radius: 25px 25px 0 0; box-shadow: 0 -4px 10px rgba(0,0,0,0.05);">
         <div class="flex justify-around items-center h-20">
             <button class="nav-item active flex flex-col items-center justify-center w-full h-full transition-all duration-300 group" onclick="switchTab('plan', this)">
                 <div class="icon-circle w-10 h-10 rounded-full flex items-center justify-center mb-1 transition-all group-hover:bg-sketch-snow">
@@ -696,6 +698,9 @@
 
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
             btn.classList.add('active');
+
+            // 修正：切換 tab 時滾動到頂部
+            window.scrollTo(0, 0);
         }
 
         // Plan Logic
@@ -944,7 +949,5 @@
             document.body.appendChild(overlay);
         }
     </script>
-
-    <script async id="netlify-rum-container" src="/.netlify/scripts/rum" data-netlify-rum-site-id="8003cbaf-be09-421b-b701-0774be002038" data-netlify-deploy-branch="" data-netlify-deploy-context="production" data-netlify-cwv-token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaXRlX2lkIjoiODAwM2NiYWYtYmUwOS00MjFiLWI3MDEtMDc3NGJlMDAyMDM4IiwiYWNjb3VudF9pZCI6IjY5MjQxMmFmYmM2NjQ5ZTZkOGQ5ZjdiZiIsImRlcGxveV9pZCI6IjY5MmMzNGEzYzJhZWEyNDAzNTZhMGFhOCIsImlzc3VlciI6Im5mc2VydmVyIn0.UhAsomSKHNugC7L5rmD9_eew9li4gC5vSL6bxT6_lLs"></script>
 </body>
 </html>
