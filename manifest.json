@@ -1,7 +1,8 @@
 {
   "name": "2025 北海道冬の旅手帳",
   "short_name": "北海道手帳",
-  "start_url": "./index.html",
+  "start_url": ".",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#FFFBF5",
   "theme_color": "#FFFBF5",
