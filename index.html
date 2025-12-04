@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>2025 北海道冬の旅手帳 v6 ❄️</title>
+    <title>2025 北海道冬の旅手帳 ❄️</title>
 
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#FDFBF7">
@@ -534,11 +534,24 @@
         // 保留原有的 localStorage 邏輯
         let expenses = JSON.parse(localStorage.getItem('expenses_book_2025_v6')) || [];
         let todoList = JSON.parse(localStorage.getItem('todo_book_2025_v6')) || [
-            { text: "護照 (效期6個月以上)", done: false },
-            { text: "Visit Japan Web 截圖", done: false },
-            { text: "日幣現金 & 信用卡", done: false },
-            { text: "eSIM / 漫遊設定", done: false },
-            { text: "防滑雪靴 & 手套", done: false }
+            // --- 證件與網卡 ---
+            { text: "護照 (效期6個月以上) 📕", done: false },
+            { text: "Visit Japan Web (截圖備用) 📱", done: false },
+            { text: "旅遊保險 (平安險+不便險) 📄", done: false },
+            { text: "eSIM / 漫遊設定完成 📶", done: false },
+
+            // --- 錢與交通 ---
+            { text: "日幣現金 & 信用卡 (JCB/Visa) 💴", done: false },
+            { text: "交通卡 (Suica/ICOCA) 🐧", done: false },
+
+            // --- 衣物與裝備 ---
+            { text: "防滑雪靴 & 防水手套 🧤", done: false },
+            { text: "防寒衣物 (發熱衣/毛帽/圍巾) 🧣", done: false },
+            { text: "個人盥洗 (牙刷/牙膏) 🪥", done: false },
+
+            // --- 電子與藥品 ---
+            { text: "充電器 & 行動電源 (低溫耗電快) 🔋", done: false },
+            { text: "常備藥 (感冒/暈車/外傷/止痛) 💊", done: false },
         ];
 
         window.onload = function () {
