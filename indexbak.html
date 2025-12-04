@@ -3,12 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#FFFBF5">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="apple-touch-icon" href="icon-192.png">
-    <script src="https://cdn.tailwindcss.com"></script>
     <title>2025 北海道冬の旅手帳 v5 ❄️</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -1060,15 +1054,6 @@
             overlay.onclick = () => overlay.remove();
             overlay.innerHTML = `<div class="bg-white p-2 border-4 border-sketch-ink rounded-lg rotate-1"><img src="${src}" class="max-w-full max-h-full rounded"></div>`;
             document.body.appendChild(overlay);
-        }
-    </script>
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js')
-                    .then((reg) => console.log('Service Worker 註冊成功!', reg))
-                    .catch((err) => console.log('Service Worker 註冊失敗:', err));
-            });
         }
     </script>
     <script async id="netlify-rum-container" src="/.netlify/scripts/rum" data-netlify-rum-site-id="8003cbaf-be09-421b-b701-0774be002038" data-netlify-deploy-branch="" data-netlify-deploy-context="production" data-netlify-cwv-token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaXRlX2lkIjoiODAwM2NiYWYtYmUwOS00MjFiLWI3MDEtMDc3NGJlMDAyMDM4IiwiYWNjb3VudF9pZCI6IjY5MjQxMmFmYmM2NjQ5ZTZkOGQ5ZjdiZiIsImRlcGxveV9pZCI6IjY5MmMzNGEzYzJhZWEyNDAzNTZhMGFhOCIsImlzc3VlciI6Im5mc2VydmVyIn0.UhAsomSKHNugC7L5rmD9_eew9li4gC5vSL6bxT6_lLs"></script>
