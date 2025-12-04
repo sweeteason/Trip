@@ -37,26 +37,10 @@
                         'soft': '0 4px 20px -2px rgba(255, 158, 170, 0.15)',
                         'card': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
                         'float': '0 10px 25px -5px rgba(0, 0, 0, 0.1)',
-                        'inner-light': 'inset 0 2px 4px 0 rgba(255, 255, 255, 0.5)'
-                    },
-                    borderRadius: {
-                        'blob': '20px 20px 20px 20px',
+                        'glow': '0 0 15px rgba(255, 158, 170, 0.5)' 
                     },
                     animation: {
-                        'float': 'float 6s ease-in-out infinite',
                         'bounce-slow': 'bounce 3s infinite',
-                        'snow': 'snow 15s linear infinite',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-6px)' },
-                        },
-                        snow: {
-                            '0%': { transform: 'translateY(-10px) translateX(0) rotate(0deg)', opacity: '0' },
-                            '20%': { opacity: '0.8' },
-                            '100%': { transform: 'translateY(100vh) translateX(20px) rotate(360deg)', opacity: '0.2' }
-                        }
                     }
                 }
             }
@@ -74,11 +58,9 @@
             min-height: 100vh;
         }
 
-        /* 隱藏滾動條但保留功能 */
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* 標籤頁切換動畫 */
         .tab-content {
             display: none;
             opacity: 0;
@@ -92,24 +74,16 @@
             transform: translateY(0);
         }
 
-        /* 新版可愛卡片樣式 */
         .kawaii-card {
             background: white;
             border-radius: 24px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.03);
             border: 2px solid #F0F0F0;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: transform 0.2s;
             position: relative;
             overflow: hidden;
         }
-        
-        /* 像貼紙一樣的效果 */
-        .sticker-border {
-            border: 3px solid white;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
 
-        /* 時間軸線優化 */
         .timeline-line {
             position: absolute;
             left: 28px;
@@ -121,7 +95,6 @@
             border-radius: 4px;
         }
 
-        /* 展開動畫 */
         .event-details {
             max-height: 0;
             overflow: hidden;
@@ -136,7 +109,6 @@
             border-top: 2px dashed #F0F0F0;
         }
         
-        /* 底部導航欄浮動效果 */
         .nav-bar-float {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
@@ -152,7 +124,7 @@
             box-shadow: 0 6px 15px rgba(255, 158, 170, 0.4);
         }
         
-        /* 雪花容器 */
+        /* 雪花特效 */
         .snow-container {
             position: fixed;
             top: 0;
@@ -167,40 +139,42 @@
             color: #BDE0FE;
             font-size: 1rem;
             text-shadow: 0 0 5px rgba(255,255,255,0.8);
+            animation: snow 15s linear infinite;
+        }
+        @keyframes snow {
+            0% { transform: translateY(-10px) translateX(0) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.8; }
+            100% { transform: translateY(100vh) translateX(20px) rotate(360deg); opacity: 0.2; }
         }
     </style>
 </head>
 <body class="font-sans flex flex-col relative text-kawaii-text selection:bg-kawaii-primary selection:text-white">
 
     <div class="snow-container">
-        <div class="snowflake" style="left: 10%; animation-delay: 0s; animation-duration: 10s;">❄</div>
-        <div class="snowflake" style="left: 25%; animation-delay: 2s; animation-duration: 12s; font-size: 0.8rem;">❅</div>
-        <div class="snowflake" style="left: 50%; animation-delay: 4s; animation-duration: 8s;">❄</div>
-        <div class="snowflake" style="left: 75%; animation-delay: 1s; animation-duration: 15s; font-size: 1.2rem;">❅</div>
-        <div class="snowflake" style="left: 90%; animation-delay: 3s; animation-duration: 9s;">❄</div>
+        <div class="snowflake" style="left: 10%; animation-delay: 0s;">❄</div>
+        <div class="snowflake" style="left: 25%; animation-delay: 2s; font-size: 0.8rem;">❅</div>
+        <div class="snowflake" style="left: 50%; animation-delay: 4s;">❄</div>
+        <div class="snowflake" style="left: 75%; animation-delay: 1s; font-size: 1.2rem;">❅</div>
+        <div class="snowflake" style="left: 90%; animation-delay: 3s;">❄</div>
     </div>
 
     <header class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-white/50 shadow-sm transition-all duration-300">
-        <div class="px-5 py-3 flex justify-between items-center max-w-2xl mx-auto">
-            <div class="flex items-center gap-3">
-                <div class="w-12 h-12 bg-gradient-to-tr from-kawaii-secondary to-blue-50 rounded-2xl flex items-center justify-center shadow-inner text-2xl relative overflow-hidden group">
-                    <span class="group-hover:animate-bounce-slow inline-block">🏔️</span>
+        <div class="px-3 py-3 flex justify-between items-center max-w-2xl mx-auto gap-2">
+            <div class="flex items-center gap-2 overflow-hidden">
+                <div class="w-10 h-10 flex-shrink-0 bg-gradient-to-tr from-kawaii-secondary to-blue-50 rounded-2xl flex items-center justify-center shadow-inner text-xl relative overflow-hidden group">
+                    <span class="group-hover:animate-bounce-slow inline-block">⛄</span>
                     <div class="absolute inset-0 bg-white/20 rounded-2xl"></div>
                 </div>
-                <div>
-                    <h1 class="text-lg font-black tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-kawaii-primary">
-                        Hokkaido Trip
+                <div class="min-w-0">
+                    <h1 class="text-base font-black tracking-wide text-gray-800 truncate leading-tight">
+                        2025 北海道<br>冬の旅手帳
                     </h1>
-                    <div class="flex items-center gap-2 text-xs font-bold text-gray-400">
-                        <span class="bg-gray-100 px-2 py-0.5 rounded-full">2025 Winter</span>
-                        <span>•</span>
-                        <span>7 Days</span>
-                    </div>
                 </div>
             </div>
             
-            <a href="https://docs.google.com/document/d/1WI3KNDMLUYx4P_X6-Oxj5lBcrVkfZfUeL3ah2RJeojE/edit?usp=sharing" target="_blank" class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-card text-gray-400 hover:text-kawaii-primary hover:scale-105 transition-all">
+            <a href="https://docs.google.com/document/d/1WI3KNDMLUYx4P_X6-Oxj5lBcrVkfZfUeL3ah2RJeojE/edit?usp=sharing" target="_blank" class="flex-shrink-0 flex items-center gap-1.5 bg-kawaii-primary text-white pl-3 pr-4 py-2 rounded-full font-bold text-xs shadow-md shadow-pink-200 hover:shadow-glow hover:scale-105 active:scale-95 transition-all">
                 <i class="fas fa-file-alt"></i>
+                <span>看完整行程</span>
             </a>
         </div>
     </header>
@@ -329,7 +303,6 @@
         </div>
 
         <div id="tab-info" class="tab-content space-y-5">
-
             <div class="bg-white rounded-3xl p-5 shadow-soft border border-gray-50">
                 <div class="flex items-center gap-3 mb-4">
                     <span class="w-8 h-8 rounded-full bg-kawaii-primary/20 flex items-center justify-center text-kawaii-primary text-xs"><i class="fas fa-bed"></i></span>
@@ -439,8 +412,6 @@
     </nav>
 
     <script>
-        // 資料與邏輯部分保持不變，僅 render 函數中的 HTML 模板更新
-
         const itineraryData = [
             {
                 date: "12/20", day: "六", title: "前進雪國 ✈️", active: true,
@@ -531,27 +502,13 @@
             { title: "精靈露台", content: "富良野森林裡的小木屋，點燈後像精靈居住的夢幻國度。", tags: ["夢幻", "手作"] }
         ];
 
-        // 保留原有的 localStorage 邏輯
         let expenses = JSON.parse(localStorage.getItem('expenses_book_2025_v6')) || [];
         let todoList = JSON.parse(localStorage.getItem('todo_book_2025_v6')) || [
-            // --- 證件與網卡 ---
-            { text: "護照 (效期6個月以上) 📕", done: false },
-            { text: "Visit Japan Web (截圖備用) 📱", done: false },
-            { text: "旅遊保險 (平安險+不便險) 📄", done: false },
-            { text: "eSIM / 漫遊設定完成 📶", done: false },
-
-            // --- 錢與交通 ---
-            { text: "日幣現金 & 信用卡 (JCB/Visa) 💴", done: false },
-            { text: "交通卡 (Suica/ICOCA) 🐧", done: false },
-
-            // --- 衣物與裝備 ---
-            { text: "防滑雪靴 & 防水手套 🧤", done: false },
-            { text: "防寒衣物 (發熱衣/毛帽/圍巾) 🧣", done: false },
-            { text: "個人盥洗 (牙刷/牙膏) 🪥", done: false },
-
-            // --- 電子與藥品 ---
-            { text: "充電器 & 行動電源 (低溫耗電快) 🔋", done: false },
-            { text: "常備藥 (感冒/暈車/外傷/止痛) 💊", done: false },
+            { text: "護照 (效期6個月以上)", done: false },
+            { text: "Visit Japan Web 截圖", done: false },
+            { text: "日幣現金 & 信用卡", done: false },
+            { text: "eSIM / 漫遊設定", done: false },
+            { text: "防滑雪靴 & 手套", done: false }
         ];
 
         window.onload = function () {
@@ -580,7 +537,6 @@
             itineraryData.forEach((item, index) => {
                 const btn = document.createElement('button');
                 const isActive = index === 0;
-                // 新的藥丸形狀按鈕樣式
                 btn.className = `flex-shrink-0 w-[4.5rem] py-2 text-center transition-all rounded-full flex flex-col items-center justify-center gap-0.5 group ${isActive ? 'bg-kawaii-primary text-white shadow-lg shadow-pink-200 scale-105' : 'bg-white text-gray-400 border border-gray-100'}`;
                 btn.innerHTML = `
                     <span class="text-[10px] font-bold opacity-80">${item.date}</span>
@@ -603,7 +559,6 @@
 
             let html = `<div class="timeline-line"></div>`;
 
-            // 天氣與標題卡片
             html += `
                 <div class="mb-6 ml-10">
                      <div class="flex justify-between items-center pr-2">
@@ -696,23 +651,19 @@
             container.innerHTML = html;
         }
 
-        // --- Wallet Logic Same as before but updated DOM IDs ---
         let currentPhotoBase64 = null;
         function appendCalc(val) { document.getElementById('calc-input').value += val; calculate(); }
         function clearCalc() { document.getElementById('calc-input').value = ""; calculate(); }
         function calculate() {
             const input = document.getElementById('calc-input').value;
             const rate = parseFloat(document.getElementById('exchange-rate').value) || 0.201;
-            // 處理空白輸入，避免顯示 undefined
             if(input.trim() === "") {
                 document.getElementById('calc-result-twd').innerText = "0";
                 document.getElementById('calc-result-jpy').innerText = "0";
                 return;
             }
             try {
-                // 安全檢查：只允許數字和運算符
                 if (/^[0-9+\-*/().\s]+$/.test(input)) {
-                    // 使用 Function 建構子比 eval 安全一點點，但仍需小心
                     const jpy = new Function('return ' + input)();
                     if (isFinite(jpy)) {
                         document.getElementById('calc-result-jpy').innerText = Math.round(jpy);
@@ -771,7 +722,6 @@
             expenses.forEach((ex, index) => {
                 total += ex.amount;
                 const li = document.createElement('li');
-                // Kawaii list item
                 li.className = "bg-white p-3 rounded-2xl flex items-center gap-3 shadow-card border border-gray-50";
                 li.innerHTML = `
                     <div class="w-10 h-10 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0 flex items-center justify-center">
@@ -793,7 +743,6 @@
         function deleteExpense(index) { if (confirm("要刪除這筆紀錄嗎？")) { expenses.splice(index, 1); localStorage.setItem('expenses_book_2025_v6', JSON.stringify(expenses)); renderExpenses(); } }
         function clearExpenses() { if (confirm("確定要清空所有紀錄嗎？")) { expenses = []; localStorage.setItem('expenses_book_2025_v6', JSON.stringify(expenses)); renderExpenses(); } }
 
-        // List Logic
         function renderTodoList() {
             const container = document.getElementById('checklist-container');
             container.innerHTML = '';
@@ -815,7 +764,6 @@
         function addTodo() { const input = document.getElementById('new-todo'); const text = input.value.trim(); if (text) { todoList.push({ text: text, done: false }); saveTodo(); input.value = ''; } }
         function removeTodo(index) { todoList.splice(index, 1); saveTodo(); }
         function saveTodo() { localStorage.setItem('todo_book_2025_v6', JSON.stringify(todoList)); renderTodoList(); }
-
     </script>
 </body>
 </html>
