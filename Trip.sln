@@ -1,12 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36401.2 d17.14
+VisualStudioVersion = 17.14.36401.2
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "方案項目", "方案項目", "{8DDC4786-5FC8-F15C-1CA5-9F41FD4BEB75}"
 	ProjectSection(SolutionItems) = preProject
+		icon-192.png = icon-192.png
+		icon-512.png = icon-512.png
 		index.html = index.html
+		indexbak.html = indexbak.html
+		manifest.json = manifest.json
 		reactapp.html = reactapp.html
+		sw.js = sw.js
 	EndProjectSection
 EndProject
 Global
