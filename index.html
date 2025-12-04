@@ -20,132 +20,37 @@
                 extend: {
                     colors: {
                         kawaii: {
-                            base: '#FDFBF7',      // 溫暖的奶油白背景
-                            text: '#4A4036',      // 柔和的深褐文字
-                            primary: '#FF9EAA',   // 櫻花粉 (主色)
-                            secondary: '#89CFF0', // 冰河藍 (輔色)
-                            accent: '#FFD54F',    // 溫暖黃 (強調)
-                            green: '#A7D7C5',     // 薄荷綠
-                            purple: '#D4C1EC',    // 薰衣草紫
-                            card: '#FFFFFF',      // 卡片白
+                            base: '#FDFBF7', text: '#4A4036', primary: '#FF9EAA', secondary: '#89CFF0',
+                            accent: '#FFD54F', green: '#A7D7C5', purple: '#D4C1EC', card: '#FFFFFF'
                         }
                     },
-                    fontFamily: {
-                        sans: ['"Zen Maru Gothic"', 'sans-serif'],
-                    },
+                    fontFamily: { sans: ['"Zen Maru Gothic"', 'sans-serif'] },
                     boxShadow: {
                         'soft': '0 4px 20px -2px rgba(255, 158, 170, 0.15)',
                         'card': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
-                        'float': '0 10px 25px -5px rgba(0, 0, 0, 0.1)',
                         'glow': '0 0 15px rgba(255, 158, 170, 0.5)' 
                     },
-                    animation: {
-                        'bounce-slow': 'bounce 3s infinite',
-                    }
+                    animation: { 'bounce-slow': 'bounce 3s infinite' }
                 }
             }
         }
     </script>
     <style>
         .pb-safe { padding-bottom: env(safe-area-inset-bottom); }
-        
-        body {
-            background-color: #FDFBF7;
-            background-image: radial-gradient(#E5E5E5 1px, transparent 1px);
-            background-size: 20px 20px;
-            color: #4A4036;
-            -webkit-tap-highlight-color: transparent;
-            min-height: 100vh;
-        }
-
+        body { background-color: #FDFBF7; background-image: radial-gradient(#E5E5E5 1px, transparent 1px); background-size: 20px 20px; color: #4A4036; -webkit-tap-highlight-color: transparent; min-height: 100vh; }
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-        .tab-content {
-            display: none;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            padding-bottom: 140px;
-        }
-        .tab-content.active {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .kawaii-card {
-            background: white;
-            border-radius: 24px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            border: 2px solid #F0F0F0;
-            transition: transform 0.2s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .timeline-line {
-            position: absolute;
-            left: 28px;
-            top: 40px;
-            bottom: 0;
-            width: 4px;
-            background: repeating-linear-gradient(to bottom, #E3F2FD 0, #E3F2FD 10px, transparent 10px, transparent 20px);
-            z-index: 0;
-            border-radius: 4px;
-        }
-
-        .event-details {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s cubic-bezier(0, 1, 0, 1), opacity 0.4s ease;
-            opacity: 0;
-        }
-        .expanded .event-details {
-            max-height: 1000px;
-            opacity: 1;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 2px dashed #F0F0F0;
-        }
-        
-        .nav-bar-float {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 30px 30px 0 0;
-            box-shadow: 0 -10px 40px rgba(0,0,0,0.05);
-            border-top: 1px solid rgba(255,255,255,0.8);
-        }
-
-        .nav-item.active .icon-container {
-            background-color: #FF9EAA;
-            color: white;
-            transform: translateY(-10px) scale(1.1);
-            box-shadow: 0 6px 15px rgba(255, 158, 170, 0.4);
-        }
-        
-        /* 雪花特效 */
-        .snow-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-        .snowflake {
-            position: absolute;
-            color: #BDE0FE;
-            font-size: 1rem;
-            text-shadow: 0 0 5px rgba(255,255,255,0.8);
-            animation: snow 15s linear infinite;
-        }
-        @keyframes snow {
-            0% { transform: translateY(-10px) translateX(0) rotate(0deg); opacity: 0; }
-            20% { opacity: 0.8; }
-            100% { transform: translateY(100vh) translateX(20px) rotate(360deg); opacity: 0.2; }
-        }
+        .tab-content { display: none; opacity: 0; transform: translateY(10px); transition: opacity 0.3s ease, transform 0.3s ease; padding-bottom: 140px; }
+        .tab-content.active { display: block; opacity: 1; transform: translateY(0); }
+        .kawaii-card { background: white; border-radius: 24px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); border: 2px solid #F0F0F0; transition: transform 0.2s; position: relative; overflow: hidden; }
+        .timeline-line { position: absolute; left: 28px; top: 40px; bottom: 0; width: 4px; background: repeating-linear-gradient(to bottom, #E3F2FD 0, #E3F2FD 10px, transparent 10px, transparent 20px); z-index: 0; border-radius: 4px; }
+        .event-details { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0, 1, 0, 1), opacity 0.4s ease; opacity: 0; }
+        .expanded .event-details { max-height: 1000px; opacity: 1; margin-top: 1rem; padding-top: 1rem; border-top: 2px dashed #F0F0F0; }
+        .nav-bar-float { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-radius: 30px 30px 0 0; box-shadow: 0 -10px 40px rgba(0,0,0,0.05); border-top: 1px solid rgba(255,255,255,0.8); }
+        .nav-item.active .icon-container { background-color: #FF9EAA; color: white; transform: translateY(-10px) scale(1.1); box-shadow: 0 6px 15px rgba(255, 158, 170, 0.4); }
+        .snow-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+        .snowflake { position: absolute; color: #BDE0FE; font-size: 1rem; text-shadow: 0 0 5px rgba(255,255,255,0.8); animation: snow 15s linear infinite; }
+        @keyframes snow { 0% { transform: translateY(-10px) translateX(0) rotate(0deg); opacity: 0; } 20% { opacity: 0.8; } 100% { transform: translateY(100vh) translateX(20px) rotate(360deg); opacity: 0.2; } }
     </style>
 </head>
 <body class="font-sans flex flex-col relative text-kawaii-text selection:bg-kawaii-primary selection:text-white">
@@ -171,26 +76,17 @@
                     </h1>
                 </div>
             </div>
-            
             <a href="https://docs.google.com/document/d/1WI3KNDMLUYx4P_X6-Oxj5lBcrVkfZfUeL3ah2RJeojE/edit?usp=sharing" target="_blank" class="flex-shrink-0 flex items-center gap-1.5 bg-kawaii-primary text-white pl-3 pr-4 py-2 rounded-full font-bold text-xs shadow-md shadow-pink-200 hover:shadow-glow hover:scale-105 active:scale-95 transition-all">
-                <i class="fas fa-file-alt"></i>
-                <span>看完整行程</span>
+                <i class="fas fa-file-alt"></i> <span>看完整行程</span>
             </a>
         </div>
     </header>
 
     <main class="w-full relative max-w-2xl mx-auto p-4 z-10 pb-32">
-
         <div id="tab-plan" class="tab-content active">
-            <div id="date-scroll" class="flex overflow-x-auto gap-3 pb-4 mb-2 hide-scrollbar sticky top-[70px] z-30 py-2 -mx-4 px-4 bg-gradient-to-b from-kawaii-base via-kawaii-base to-transparent">
-                </div>
-
-            <div id="itinerary-container" class="space-y-6 relative pl-2 pr-2 mt-2">
-                </div>
-
-            <div class="text-center mt-12 mb-8">
-                <p class="text-xs text-gray-300 font-bold">—— 每一天都是新的冒險 ——</p>
-            </div>
+            <div id="date-scroll" class="flex overflow-x-auto gap-3 pb-4 mb-2 hide-scrollbar sticky top-[70px] z-30 py-2 -mx-4 px-4 bg-gradient-to-b from-kawaii-base via-kawaii-base to-transparent"></div>
+            <div id="itinerary-container" class="space-y-6 relative pl-2 pr-2 mt-2"></div>
+            <div class="text-center mt-12 mb-8"><p class="text-xs text-gray-300 font-bold">—— 每一天都是新的冒險 ——</p></div>
         </div>
 
         <div id="tab-guide" class="tab-content">
@@ -198,18 +94,24 @@
                 <h2 class="text-2xl font-black text-kawaii-text">旅行筆記</h2>
                 <span class="bg-kawaii-accent/30 text-yellow-700 text-xs font-bold px-2 py-1 rounded-lg">豆知識</span>
             </div>
-            <div id="guide-container" class="grid grid-cols-1 gap-5">
-                </div>
+            <div id="guide-container" class="grid grid-cols-1 gap-5"></div>
         </div>
 
         <div id="tab-wallet" class="tab-content">
             <div class="bg-white rounded-[32px] p-6 shadow-soft mb-6 relative border-4 border-kawaii-primary/10">
                 <div class="absolute top-4 right-6 text-kawaii-primary/20 text-6xl rotate-12"><i class="fas fa-coins"></i></div>
                 
-                <div class="relative z-10">
-                    <label class="text-xs font-bold text-gray-400 mb-1 block tracking-wider">EXCHANGE RATE</label>
-                    <div class="flex items-center gap-2 mb-4">
-                        <input type="number" id="exchange-rate" value="0.201" step="0.001" class="w-32 text-2xl font-black bg-transparent border-b-2 border-kawaii-primary/30 focus:border-kawaii-primary focus:outline-none text-kawaii-text" placeholder="0.201">
+                <div class="relative z-10 flex gap-4 mb-4">
+                    <div class="flex-1">
+                        <label class="text-xs font-bold text-gray-400 mb-1 block tracking-wider">匯率 (Rate)</label>
+                        <input type="number" id="exchange-rate" value="0.201" step="0.001" class="w-full text-2xl font-black bg-transparent border-b-2 border-kawaii-primary/30 focus:border-kawaii-primary focus:outline-none text-kawaii-text" placeholder="0.201">
+                    </div>
+                    <div class="w-20">
+                        <label class="text-xs font-bold text-gray-400 mb-1 block tracking-wider">人數</label>
+                        <div class="flex items-center">
+                            <i class="fas fa-user text-kawaii-primary mr-1 text-xs"></i>
+                            <input type="number" id="traveler-count" value="2" min="1" class="w-full text-2xl font-black bg-transparent border-b-2 border-kawaii-primary/30 focus:border-kawaii-primary focus:outline-none text-kawaii-text text-center" onchange="updateSplitCalc()">
+                        </div>
                     </div>
                 </div>
 
@@ -230,17 +132,14 @@
                     <button onclick="appendCalc('-')" class="h-10 rounded-xl bg-gray-50 font-bold text-gray-400 hover:bg-gray-100">-</button>
                     <button onclick="appendCalc('*')" class="h-10 rounded-xl bg-gray-50 font-bold text-gray-400 hover:bg-gray-100">×</button>
                     <button onclick="appendCalc('/')" class="h-10 rounded-xl bg-gray-50 font-bold text-gray-400 hover:bg-gray-100">÷</button>
-                    
                     <button onclick="appendCalc('7')" class="h-12 rounded-2xl bg-white shadow-card font-black text-lg text-kawaii-text active:scale-95 transition-transform">7</button>
                     <button onclick="appendCalc('8')" class="h-12 rounded-2xl bg-white shadow-card font-black text-lg text-kawaii-text active:scale-95 transition-transform">8</button>
                     <button onclick="appendCalc('9')" class="h-12 rounded-2xl bg-white shadow-card font-black text-lg text-kawaii-text active:scale-95 transition-transform">9</button>
                     <button onclick="clearCalc()" class="h-12 rounded-2xl bg-red-50 text-red-400 font-black text-lg active:scale-95 transition-transform">C</button>
-
                     <button onclick="appendCalc('4')" class="h-12 rounded-2xl bg-white shadow-card font-black text-lg text-kawaii-text active:scale-95 transition-transform">4</button>
                     <button onclick="appendCalc('5')" class="h-12 rounded-2xl bg-white shadow-card font-black text-lg text-kawaii-text active:scale-95 transition-transform">5</button>
                     <button onclick="appendCalc('6')" class="h-12 rounded-2xl bg-white shadow-card font-black text-lg text-kawaii-text active:scale-95 transition-transform">6</button>
                     <button onclick="calculate()" class="h-12 rounded-2xl bg-kawaii-secondary text-white font-black text-lg shadow-lg shadow-blue-200 active:scale-95 transition-transform">=</button>
-
                     <button onclick="appendCalc('1')" class="h-12 rounded-2xl bg-white shadow-card font-black text-lg text-kawaii-text active:scale-95 transition-transform">1</button>
                     <button onclick="appendCalc('2')" class="h-12 rounded-2xl bg-white shadow-card font-black text-lg text-kawaii-text active:scale-95 transition-transform">2</button>
                     <button onclick="appendCalc('3')" class="h-12 rounded-2xl bg-white shadow-card font-black text-lg text-kawaii-text active:scale-95 transition-transform">3</button>
@@ -276,34 +175,38 @@
             </div>
 
             <div class="px-2">
+                <div class="bg-gradient-to-r from-pink-50 to-white p-4 rounded-2xl border border-pink-100 shadow-sm mb-6 flex justify-between items-center relative overflow-hidden">
+                    <div class="absolute -right-4 -top-4 w-16 h-16 bg-pink-200 rounded-full opacity-30 blur-xl"></div>
+                    <div>
+                        <div class="text-[10px] font-bold text-gray-400 mb-1">代墊總額 (Advance Total)</div>
+                        <div class="text-xl font-black text-gray-700">¥<span id="advance-total">0</span></div>
+                    </div>
+                    <div class="text-right z-10">
+                        <div class="text-[10px] font-bold text-kawaii-primary mb-1">每人應付 (Per Person)</div>
+                        <div class="text-2xl font-black text-kawaii-primary">¥<span id="split-result">0</span></div>
+                    </div>
+                </div>
+
                 <div class="flex justify-between items-center mb-4">
                     <h3 class="font-black text-lg text-kawaii-text">支出紀錄</h3>
                     <span class="text-xs font-bold bg-white px-3 py-1 rounded-full shadow-sm text-gray-500">Total: <span class="text-kawaii-primary">¥</span><span id="total-jpy">0</span></span>
                 </div>
-                <ul id="expense-list" class="space-y-3 pb-4">
-                    </ul>
-                <button onclick="clearExpenses()" class="w-full text-center text-xs text-gray-300 mt-6 hover:text-red-300 transition-colors">🗑️ 清空所有紀錄</button>
+                <div id="expense-container" class="space-y-6 pb-8">
+                    </div>
+                <button onclick="clearExpenses()" class="w-full text-center text-xs text-gray-300 mt-2 hover:text-red-300 transition-colors">🗑️ 清空所有紀錄</button>
             </div>
         </div>
 
         <div id="tab-lists" class="tab-content px-1">
             <div class="bg-white rounded-[32px] p-6 shadow-soft mb-6 relative">
-                <div class="w-12 h-12 bg-kawaii-green/20 rounded-full flex items-center justify-center text-kawaii-green text-xl absolute -top-4 -left-2 shadow-sm border-4 border-kawaii-base">
-                    <i class="fas fa-suitcase-rolling"></i>
-                </div>
+                <div class="w-12 h-12 bg-kawaii-green/20 rounded-full flex items-center justify-center text-kawaii-green text-xl absolute -top-4 -left-2 shadow-sm border-4 border-kawaii-base"><i class="fas fa-suitcase-rolling"></i></div>
                 <h3 class="text-lg font-black mb-4 pl-10 text-kawaii-text">行李檢查表</h3>
-                
-                <div id="checklist-container" class="space-y-3">
-                    </div>
-                
+                <div id="checklist-container" class="space-y-3"></div>
                 <div class="mt-6 flex gap-3 relative">
                     <input type="text" id="new-todo" placeholder="新增項目..." class="flex-1 bg-gray-50 rounded-full px-4 text-sm font-bold outline-none border-2 border-transparent focus:border-kawaii-green/50 transition-colors h-10">
-                    <button onclick="addTodo()" class="bg-kawaii-green text-white w-10 h-10 rounded-full shadow-md hover:shadow-lg active:scale-90 transition-all flex items-center justify-center">
-                        <i class="fas fa-plus"></i>
-                    </button>
+                    <button onclick="addTodo()" class="bg-kawaii-green text-white w-10 h-10 rounded-full shadow-md hover:shadow-lg active:scale-90 transition-all flex items-center justify-center"><i class="fas fa-plus"></i></button>
                 </div>
             </div>
-
             <div class="bg-[#FFFDF0] rounded-[32px] p-6 shadow-card relative border-2 border-[#FEF9E7]">
                 <div class="absolute -top-3 -right-2 text-2xl rotate-12">📝</div>
                 <h3 class="text-lg font-black mb-2 text-[#C9B36B]">隨手記</h3>
@@ -313,108 +216,56 @@
 
         <div id="tab-info" class="tab-content space-y-5">
             <div class="bg-white rounded-3xl p-5 shadow-soft border border-gray-50">
-                <div class="flex items-center gap-3 mb-4">
-                    <span class="w-8 h-8 rounded-full bg-kawaii-primary/20 flex items-center justify-center text-kawaii-primary text-xs"><i class="fas fa-bed"></i></span>
-                    <h3 class="font-black text-lg text-kawaii-text">住宿資訊</h3>
-                </div>
-
-                <div class="pl-2 border-l-4 border-kawaii-primary/30 ml-2">
-                    <h4 class="text-base font-black text-kawaii-text">Hotel Vista Sapporo Odori</h4>
-                    <p class="text-xs text-gray-400 font-bold">ホテルビスタ札幌 [大通]</p>
-                </div>
-
+                <div class="flex items-center gap-3 mb-4"><span class="w-8 h-8 rounded-full bg-kawaii-primary/20 flex items-center justify-center text-kawaii-primary text-xs"><i class="fas fa-bed"></i></span><h3 class="font-black text-lg text-kawaii-text">住宿資訊</h3></div>
+                <div class="pl-2 border-l-4 border-kawaii-primary/30 ml-2"><h4 class="text-base font-black text-kawaii-text">Hotel Vista Sapporo Odori</h4><p class="text-xs text-gray-400 font-bold">ホテルビスタ札幌 [大通]</p></div>
                 <div class="mt-4 space-y-2 text-sm font-medium text-gray-600 bg-gray-50 p-4 rounded-2xl">
-                    <div class="flex items-start gap-3">
-                        <i class="fas fa-map-marker-alt mt-1 text-kawaii-primary"></i>
-                        <p class="text-xs leading-relaxed">〒060-0063<br>北海道札幌市中央区南3条西5丁目16<br><span class="text-gray-400">(狸小路 5丁目附近)</span></p>
-                    </div>
+                    <div class="flex items-start gap-3"><i class="fas fa-map-marker-alt mt-1 text-kawaii-primary"></i><p class="text-xs leading-relaxed">〒060-0063<br>北海道札幌市中央区南3条西5丁目16<br><span class="text-gray-400">(狸小路 5丁目附近)</span></p></div>
                 </div>
-
-                <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Vista+Sapporo+Odori" target="_blank" class="mt-4 flex items-center justify-center w-full bg-white border-2 border-gray-100 text-kawaii-text py-2.5 rounded-xl font-bold text-xs shadow-sm hover:border-kawaii-primary/50 transition-colors">
-                    <i class="fas fa-location-arrow mr-2 text-kawaii-primary"></i> 開啟地圖
-                </a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Vista+Sapporo+Odori" target="_blank" class="mt-4 flex items-center justify-center w-full bg-white border-2 border-gray-100 text-kawaii-text py-2.5 rounded-xl font-bold text-xs shadow-sm hover:border-kawaii-primary/50 transition-colors"><i class="fas fa-location-arrow mr-2 text-kawaii-primary"></i> 開啟地圖</a>
             </div>
-
             <div class="bg-gradient-to-br from-[#E0F7FA] to-white rounded-3xl p-5 shadow-soft relative overflow-hidden">
                 <div class="absolute -right-5 -top-5 w-20 h-20 bg-blue-100 rounded-full opacity-50 blur-xl"></div>
-                <h3 class="font-black text-lg mb-4 flex items-center gap-2 relative z-10 text-cyan-800">
-                    <i class="fas fa-flag text-cyan-400"></i> 一日遊集合
-                </h3>
-
+                <h3 class="font-black text-lg mb-4 flex items-center gap-2 relative z-10 text-cyan-800"><i class="fas fa-flag text-cyan-400"></i> 一日遊集合</h3>
                 <div class="bg-white/80 backdrop-blur-sm p-4 rounded-2xl border border-white mb-3 shadow-sm">
-                    <div class="flex justify-between items-start">
-                        <span class="bg-cyan-100 text-cyan-700 text-[10px] font-black px-2 py-1 rounded-md">12/22 登別洞爺</span>
-                        <a href="https://www.google.com/maps/search/?api=1&query=%E5%A4%A7%E9%80%9A%E5%85%AC%E5%9C%92+%E5%B8%8C%E6%9C%9B%E3%81%AE%E5%83%8F" target="_blank" class="text-cyan-400"><i class="fas fa-map-pin"></i></a>
-                    </div>
-                    <div class="mt-2">
-                        <div class="text-2xl font-black text-kawaii-text">08:00 <span class="text-xs font-normal text-gray-400">集合</span></div>
-                        <div class="text-sm font-bold text-gray-600">大通公園 希望之像</div>
-                    </div>
+                    <div class="flex justify-between items-start"><span class="bg-cyan-100 text-cyan-700 text-[10px] font-black px-2 py-1 rounded-md">12/22 登別洞爺</span><a href="https://www.google.com/maps/search/?api=1&query=%E5%A4%A7%E9%80%9A%E5%85%AC%E5%9C%92+%E5%B8%8C%E6%9C%9B%E3%81%AE%E5%83%8F" target="_blank" class="text-cyan-400"><i class="fas fa-map-pin"></i></a></div>
+                    <div class="mt-2"><div class="text-2xl font-black text-kawaii-text">08:00 <span class="text-xs font-normal text-gray-400">集合</span></div><div class="text-sm font-bold text-gray-600">大通公園 希望之像</div></div>
                 </div>
-
                 <div class="bg-white/80 backdrop-blur-sm p-4 rounded-2xl border border-white shadow-sm">
-                    <div class="flex justify-between items-start">
-                        <span class="bg-blue-100 text-blue-700 text-[10px] font-black px-2 py-1 rounded-md">12/23 旭川美瑛</span>
-                        <a href="https://www.google.com/maps/search/?api=1&query=%E6%9C%AD%E5%B9%8C%E9%A7%85%E5%8C%97%E5%8F%A3%E5%9B%A3%E4%BD%93%E3%83%90%E3%82%B9%E4%B9%97%E3%82%8A%E5%A0%B4" target="_blank" class="text-blue-400"><i class="fas fa-map-pin"></i></a>
-                    </div>
-                    <div class="mt-2">
-                        <div class="text-2xl font-black text-kawaii-text">07:50 <span class="text-xs font-normal text-gray-400">集合</span></div>
-                        <div class="text-sm font-bold text-gray-600">札幌站 北口巴士站</div>
-                    </div>
+                    <div class="flex justify-between items-start"><span class="bg-blue-100 text-blue-700 text-[10px] font-black px-2 py-1 rounded-md">12/23 旭川美瑛</span><a href="https://www.google.com/maps/search/?api=1&query=%E6%9C%AD%E5%B9%8C%E9%A7%85%E5%8C%97%E5%8F%A3%E5%9B%A3%E4%BD%93%E3%83%90%E3%82%B9%E4%B9%97%E3%82%8A%E5%A0%B4" target="_blank" class="text-blue-400"><i class="fas fa-map-pin"></i></a></div>
+                    <div class="mt-2"><div class="text-2xl font-black text-kawaii-text">07:50 <span class="text-xs font-normal text-gray-400">集合</span></div><div class="text-sm font-bold text-gray-600">札幌站 北口巴士站</div></div>
                 </div>
             </div>
-
             <div class="bg-white rounded-3xl p-5 shadow-soft border-l-8 border-red-200">
                  <h3 class="font-black text-lg mb-3">SOS 緊急聯絡</h3>
                  <div class="grid grid-cols-2 gap-3">
-                     <a href="tel:110" class="bg-red-50 p-3 rounded-xl flex flex-col items-center justify-center gap-1 active:scale-95 transition-transform">
-                         <i class="fas fa-user-shield text-red-400 text-xl"></i>
-                         <span class="text-xs font-black text-red-400">警察 110</span>
-                     </a>
-                     <a href="tel:119" class="bg-red-50 p-3 rounded-xl flex flex-col items-center justify-center gap-1 active:scale-95 transition-transform">
-                         <i class="fas fa-ambulance text-red-400 text-xl"></i>
-                         <span class="text-xs font-black text-red-400">救護 119</span>
-                     </a>
+                     <a href="tel:110" class="bg-red-50 p-3 rounded-xl flex flex-col items-center justify-center gap-1 active:scale-95 transition-transform"><i class="fas fa-user-shield text-red-400 text-xl"></i><span class="text-xs font-black text-red-400">警察 110</span></a>
+                     <a href="tel:119" class="bg-red-50 p-3 rounded-xl flex flex-col items-center justify-center gap-1 active:scale-95 transition-transform"><i class="fas fa-ambulance text-red-400 text-xl"></i><span class="text-xs font-black text-red-400">救護 119</span></a>
                  </div>
-                 <div class="mt-3 bg-gray-50 rounded-xl p-3 text-center">
-                    <div class="text-[10px] text-gray-400 mb-1">駐日經濟文化代表處</div>
-                    <a href="tel:+81112222930" class="font-black text-gray-700">+81-11-222-2930</a>
-                 </div>
+                 <div class="mt-3 bg-gray-50 rounded-xl p-3 text-center"><div class="text-[10px] text-gray-400 mb-1">駐日經濟文化代表處</div><a href="tel:+81112222930" class="font-black text-gray-700">+81-11-222-2930</a></div>
             </div>
         </div>
-
     </main>
 
     <nav class="nav-bar-float fixed bottom-0 left-0 w-full pb-safe z-50">
         <div class="flex justify-around items-end h-20 px-2">
             <button class="nav-item active w-full h-full pb-2 flex flex-col items-center justify-end transition-all duration-300 group" onclick="switchTab('plan', this)">
-                <div class="icon-container w-10 h-10 rounded-2xl flex items-center justify-center mb-1 transition-all duration-300 bg-transparent text-gray-400">
-                    <i class="fas fa-map-marked-alt text-lg"></i>
-                </div>
+                <div class="icon-container w-10 h-10 rounded-2xl flex items-center justify-center mb-1 transition-all duration-300 bg-transparent text-gray-400"><i class="fas fa-map-marked-alt text-lg"></i></div>
                 <span class="text-[10px] font-bold text-gray-400 group-[.active]:text-kawaii-primary transition-colors">行程</span>
             </button>
             <button class="nav-item w-full h-full pb-2 flex flex-col items-center justify-end transition-all duration-300 group" onclick="switchTab('guide', this)">
-                <div class="icon-container w-10 h-10 rounded-2xl flex items-center justify-center mb-1 transition-all duration-300 bg-transparent text-gray-400">
-                    <i class="fas fa-book-open text-lg"></i>
-                </div>
+                <div class="icon-container w-10 h-10 rounded-2xl flex items-center justify-center mb-1 transition-all duration-300 bg-transparent text-gray-400"><i class="fas fa-book-open text-lg"></i></div>
                 <span class="text-[10px] font-bold text-gray-400 group-[.active]:text-kawaii-primary transition-colors">導覽</span>
             </button>
             <button class="nav-item w-full h-full pb-2 flex flex-col items-center justify-end transition-all duration-300 group" onclick="switchTab('wallet', this)">
-                <div class="icon-container w-12 h-12 rounded-[20px] flex items-center justify-center mb-1 transition-all duration-300 bg-transparent text-gray-400 -mt-4 group-[.active]:-mt-6">
-                    <i class="fas fa-wallet text-xl"></i>
-                </div>
+                <div class="icon-container w-12 h-12 rounded-[20px] flex items-center justify-center mb-1 transition-all duration-300 bg-transparent text-gray-400 -mt-4 group-[.active]:-mt-6"><i class="fas fa-wallet text-xl"></i></div>
                 <span class="text-[10px] font-bold text-gray-400 group-[.active]:text-kawaii-primary transition-colors">錢包</span>
             </button>
             <button class="nav-item w-full h-full pb-2 flex flex-col items-center justify-end transition-all duration-300 group" onclick="switchTab('lists', this)">
-                <div class="icon-container w-10 h-10 rounded-2xl flex items-center justify-center mb-1 transition-all duration-300 bg-transparent text-gray-400">
-                    <i class="fas fa-tasks text-lg"></i>
-                </div>
+                <div class="icon-container w-10 h-10 rounded-2xl flex items-center justify-center mb-1 transition-all duration-300 bg-transparent text-gray-400"><i class="fas fa-tasks text-lg"></i></div>
                 <span class="text-[10px] font-bold text-gray-400 group-[.active]:text-kawaii-primary transition-colors">清單</span>
             </button>
             <button class="nav-item w-full h-full pb-2 flex flex-col items-center justify-end transition-all duration-300 group" onclick="switchTab('info', this)">
-                <div class="icon-container w-10 h-10 rounded-2xl flex items-center justify-center mb-1 transition-all duration-300 bg-transparent text-gray-400">
-                    <i class="fas fa-info-circle text-lg"></i>
-                </div>
+                <div class="icon-container w-10 h-10 rounded-2xl flex items-center justify-center mb-1 transition-all duration-300 bg-transparent text-gray-400"><i class="fas fa-info-circle text-lg"></i></div>
                 <span class="text-[10px] font-bold text-gray-400 group-[.active]:text-kawaii-primary transition-colors">資訊</span>
             </button>
         </div>
@@ -429,7 +280,6 @@
                     { time: "09:10", desc: "桃園機場 (T1)", type: "transport", note: "提早3hr!", highlight: true, details: "09:10前抵達。酷航櫃台人多，請提早。填寫 Visit Japan Web。" },
                     { time: "12:10", desc: "酷航 TR892", type: "transport", details: "12:10 起飛 -> 17:20 抵達新千歲 (CTS)。" },
                     { time: "17:50", desc: "抵達新千歲", type: "transport", details: "搭乘 JR 快速 Airport (¥1,150) 前往札幌。" },
-                    // 修改：更名為「旅館 Check-in」
                     { time: "19:00", desc: "旅館 Check-in", type: "stay", mapLink: "https://www.google.com/maps/search/?api=1&query=Hotel+Vista+Sapporo+Odori", details: "Hotel Vista Sapporo Odori。狸小路商店街附近。" },
                     { time: "19:30", desc: "湯咖哩 Suage+", type: "food", note: "必吃!", details: "推薦：串燒湯咖哩。飯泡湯吃。" },
                     { time: "20:30", desc: "夜間聖代", type: "activity", details: "推薦：ななかま堂。之後逛唐吉軻德。" }
@@ -512,8 +362,7 @@
             { title: "精靈露台", content: "富良野森林裡的小木屋，點燈後像精靈居住的夢幻國度。", tags: ["夢幻", "手作"] }
         ];
 
-        // 升級版本號到 v8
-        let expenses = JSON.parse(localStorage.getItem('expenses_book_2025_v8')) || [];
+        let expenses = JSON.parse(localStorage.getItem('expenses_book_2025_v9')) || [];
         
         let todoList = JSON.parse(localStorage.getItem('todo_book_2025_v7')) || [
             { text: "護照 (效期6個月以上) 📕", done: false },
@@ -536,6 +385,11 @@
             renderExpenses();
             renderTodoList();
             
+            // 讀取人數設定
+            const savedCount = localStorage.getItem('traveler_count_v9');
+            if (savedCount) document.getElementById('traveler-count').value = savedCount;
+            updateSplitCalc();
+
             document.getElementById('exchange-rate').addEventListener('input', calculate);
             document.getElementById('calc-input').addEventListener('input', calculate);
         };
@@ -724,12 +578,10 @@
             const item = document.getElementById('expense-item').value;
             const amountStr = document.getElementById('calc-result-jpy').innerText;
             const amount = parseInt(amountStr) || 0;
-            // 獲取是否代墊的狀態
             const isAdvance = document.getElementById('expense-is-advance').checked;
 
             if (!item || amount <= 0) { alert("請輸入項目和金額喔！🥺"); return; }
             
-            // 將 isAdvance 屬性存入資料
             expenses.unshift({ 
                 id: Date.now(), 
                 item: item, 
@@ -739,51 +591,105 @@
                 isAdvance: isAdvance 
             });
             
-            localStorage.setItem('expenses_book_2025_v8', JSON.stringify(expenses));
+            localStorage.setItem('expenses_book_2025_v9', JSON.stringify(expenses));
             renderExpenses();
+            updateSplitCalc();
             
-            // 重置表單
             document.getElementById('expense-item').value = ""; 
             document.getElementById('calc-input').value = "";
             document.getElementById('calc-result-jpy').innerText = "0"; 
             document.getElementById('calc-result-twd').innerText = "0"; 
-            document.getElementById('expense-is-advance').checked = false; // 重置勾選
+            document.getElementById('expense-is-advance').checked = false;
             clearPhoto();
         }
 
-        function renderExpenses() {
-            const list = document.getElementById('expense-list');
-            const totalEl = document.getElementById('total-jpy');
-            list.innerHTML = '';
-            let total = 0; const rate = parseFloat(document.getElementById('exchange-rate').value) || 0.201;
+        function updateSplitCalc() {
+            const travelerCount = parseInt(document.getElementById('traveler-count').value) || 2;
+            localStorage.setItem('traveler_count_v9', travelerCount); // 儲存人數
             
-            expenses.forEach((ex, index) => {
-                total += ex.amount;
-                const li = document.createElement('li');
-                li.className = "bg-white p-3 rounded-2xl flex items-center gap-3 shadow-card border border-gray-50";
-                
-                // 渲染代墊標籤邏輯
-                const advanceTag = ex.isAdvance ? `<span class="bg-kawaii-secondary/20 text-kawaii-secondary text-[10px] px-1.5 py-0.5 rounded-md mr-1 font-black">[代墊]</span>` : '';
-
-                li.innerHTML = `
-                    <div class="w-10 h-10 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0 flex items-center justify-center">
-                        ${ex.image ? `<img src="${ex.image}" class="w-full h-full object-cover">` : `<i class="fas fa-shopping-basket text-gray-300"></i>`}
-                    </div>
-                    <div class="flex-1 min-w-0">
-                        <div class="flex justify-between items-baseline">
-                            <h4 class="text-sm font-bold text-gray-700 truncate">${advanceTag}${ex.item}</h4>
-                            <span class="font-black text-sm text-kawaii-text">¥${ex.amount.toLocaleString()}</span>
-                        </div>
-                        <div class="text-[10px] text-gray-400 mt-1">${ex.date}</div>
-                    </div>
-                    <button onclick="deleteExpense(${index})" class="w-8 h-8 rounded-full bg-red-50 text-red-300 hover:bg-red-100 flex items-center justify-center transition-colors"><i class="fas fa-trash-alt text-xs"></i></button>
-                `;
-                list.appendChild(li);
+            let totalAdvance = 0;
+            expenses.forEach(ex => {
+                if(ex.isAdvance) totalAdvance += ex.amount;
             });
-            totalEl.innerText = total.toLocaleString();
+            
+            const perPerson = Math.round(totalAdvance / travelerCount);
+            
+            document.getElementById('advance-total').innerText = totalAdvance.toLocaleString();
+            document.getElementById('split-result').innerText = perPerson.toLocaleString();
         }
-        function deleteExpense(index) { if (confirm("要刪除這筆紀錄嗎？")) { expenses.splice(index, 1); localStorage.setItem('expenses_book_2025_v8', JSON.stringify(expenses)); renderExpenses(); } }
-        function clearExpenses() { if (confirm("確定要清空所有紀錄嗎？")) { expenses = []; localStorage.setItem('expenses_book_2025_v8', JSON.stringify(expenses)); renderExpenses(); } }
+
+        function renderExpenses() {
+            const container = document.getElementById('expense-container');
+            const totalEl = document.getElementById('total-jpy');
+            container.innerHTML = '';
+            let total = 0; 
+            
+            // 分組邏輯
+            const grouped = {};
+            expenses.forEach((ex) => {
+                total += ex.amount;
+                if (!grouped[ex.date]) grouped[ex.date] = [];
+                grouped[ex.date].push(ex);
+            });
+
+            // 渲染
+            for (const [date, items] of Object.entries(grouped)) {
+                const groupDiv = document.createElement('div');
+                
+                // 日期標題
+                groupDiv.innerHTML = `<div class="sticky top-0 bg-kawaii-base/95 backdrop-blur z-10 py-2 mb-2 border-b border-gray-100 flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-kawaii-accent"></span>
+                    <h4 class="font-black text-gray-500 text-sm">${date}</h4>
+                </div>`;
+
+                const listUl = document.createElement('ul');
+                listUl.className = "space-y-3";
+
+                items.forEach((ex) => {
+                    // 找出原始 index 以便刪除 (因為現在是分組渲染，index 變亂了)
+                    const originalIndex = expenses.findIndex(e => e.id === ex.id);
+
+                    const li = document.createElement('li');
+                    li.className = "bg-white p-3 rounded-2xl flex items-center gap-3 shadow-card border border-gray-50";
+                    const advanceTag = ex.isAdvance ? `<span class="bg-kawaii-secondary/20 text-kawaii-secondary text-[10px] px-1.5 py-0.5 rounded-md mr-1 font-black">[代墊]</span>` : '';
+
+                    li.innerHTML = `
+                        <div class="w-10 h-10 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0 flex items-center justify-center">
+                            ${ex.image ? `<img src="${ex.image}" class="w-full h-full object-cover">` : `<i class="fas fa-shopping-basket text-gray-300"></i>`}
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex justify-between items-baseline">
+                                <h4 class="text-sm font-bold text-gray-700 truncate">${advanceTag}${ex.item}</h4>
+                                <span class="font-black text-sm text-kawaii-text">¥${ex.amount.toLocaleString()}</span>
+                            </div>
+                        </div>
+                        <button onclick="deleteExpense(${originalIndex})" class="w-8 h-8 rounded-full bg-red-50 text-red-300 hover:bg-red-100 flex items-center justify-center transition-colors"><i class="fas fa-trash-alt text-xs"></i></button>
+                    `;
+                    listUl.appendChild(li);
+                });
+
+                groupDiv.appendChild(listUl);
+                container.appendChild(groupDiv);
+            }
+
+            totalEl.innerText = total.toLocaleString();
+            updateSplitCalc(); // 確保每次渲染列表時也更新分帳
+        }
+
+        function deleteExpense(index) { 
+            if (confirm("要刪除這筆紀錄嗎？")) { 
+                expenses.splice(index, 1); 
+                localStorage.setItem('expenses_book_2025_v9', JSON.stringify(expenses)); 
+                renderExpenses(); 
+            } 
+        }
+        function clearExpenses() { 
+            if (confirm("確定要清空所有紀錄嗎？")) { 
+                expenses = []; 
+                localStorage.setItem('expenses_book_2025_v9', JSON.stringify(expenses)); 
+                renderExpenses(); 
+            } 
+        }
 
         function renderTodoList() {
             const container = document.getElementById('checklist-container');
