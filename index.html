@@ -343,7 +343,7 @@
                     <input type="text" id="expense-item" placeholder="買了什麼..." class="flex-1 bg-transparent border-b-2 border-sketch-ink border-dashed px-2 text-sm font-bold outline-none">
                     <label class="sketch-box w-10 h-10 flex items-center justify-center bg-sketch-warm cursor-pointer active:scale-95">
                         <i class="fas fa-camera"></i>
-                        <input type="file" id="expense-photo" accept="image/*" capture="environment" class="hidden" onchange="handlePhotoUpload(this)">
+                        <input type="file" id="expense-photo" accept="image/*" class="hidden" onchange="handlePhotoUpload(this)">
                     </label>
                 </div>
 
@@ -808,9 +808,9 @@
                 const isActive = index === 0;
                 btn.className = `flex-shrink-0 w-16 py-2 text-center transition-all border-2 rounded-xl relative overflow-hidden group ${isActive ? 'bg-sketch-pink border-sketch-ink text-sketch-ink shadow-sketch transform -translate-y-1' : 'bg-white border-sketch-line text-gray-400'}`;
                 btn.innerHTML = `
-                        <span class="block text-[10px] font-bold mb-0">${item.date}</span>
-                        <span class="text-lg font-black">${item.day}</span>
-                    `;
+                            <span class="block text-[10px] font-bold mb-0">${item.date}</span>
+                            <span class="text-lg font-black">${item.day}</span>
+                        `;
                 btn.onclick = () => {
                     Array.from(container.children).forEach(c => {
                         c.className = 'flex-shrink-0 w-16 py-2 text-center transition-all border-2 bg-white border-sketch-line text-gray-400 rounded-xl';
@@ -830,21 +830,21 @@
 
             // 修改：加入天氣小卡
             html += `
-                    <div class="mb-8 ml-10 relative">
-                         <div class="flex justify-between items-end pr-4 mb-2">
-                            <h3 class="text-xl font-black text-sketch-ink bg-sketch-warm inline-block px-4 py-2 sketch-box transform -rotate-1">
-                                ${dayData.title}
-                            </h3>
-                            <div class="flex items-center gap-2 bg-white/80 border border-sketch-ink px-3 py-1 rounded-full shadow-sm transform rotate-1">
-                                <i class="fas ${dayData.weather.icon} text-blue-400 text-lg"></i>
-                                <div class="text-right leading-tight">
-                                    <div class="text-xs font-black text-sketch-ink">${dayData.weather.desc}</div>
-                                    <div class="text-[10px] font-bold text-gray-500">${dayData.weather.temp}</div>
+                        <div class="mb-8 ml-10 relative">
+                             <div class="flex justify-between items-end pr-4 mb-2">
+                                <h3 class="text-xl font-black text-sketch-ink bg-sketch-warm inline-block px-4 py-2 sketch-box transform -rotate-1">
+                                    ${dayData.title}
+                                </h3>
+                                <div class="flex items-center gap-2 bg-white/80 border border-sketch-ink px-3 py-1 rounded-full shadow-sm transform rotate-1">
+                                    <i class="fas ${dayData.weather.icon} text-blue-400 text-lg"></i>
+                                    <div class="text-right leading-tight">
+                                        <div class="text-xs font-black text-sketch-ink">${dayData.weather.desc}</div>
+                                        <div class="text-[10px] font-bold text-gray-500">${dayData.weather.temp}</div>
+                                    </div>
                                 </div>
-                            </div>
-                         </div>
-                    </div>
-                `;
+                             </div>
+                        </div>
+                    `;
 
             dayData.events.forEach((event, idx) => {
                 const hasDetails = event.details ? true : false;
@@ -859,35 +859,35 @@
                 else if (event.type === 'spot') { iconClass = 'fa-camera'; iconBg = 'bg-sketch-green'; }
 
                 html += `
-                    <div class="relative pl-10 pb-6 group z-10">
-                        <div class="absolute left-[18px] top-0 w-8 h-8 ${iconBg} border-2 border-sketch-ink rounded-full flex items-center justify-center z-20 shadow-sm">
-                            <i class="fas ${iconClass} text-sketch-ink text-xs"></i>
-                        </div>
-
-                        <div class="sketch-box p-4 bg-white relative cursor-pointer active:scale-[0.98] transition-transform"
-                             onclick="${hasDetails ? `toggleDetails('${eventId}', this)` : ''}">
-
-                            ${event.highlight ? '<div class="absolute -top-3 -right-2 important-badge transform rotate-3">重要!</div>' : ''}
-
-                            <div class="flex justify-between items-start mb-2">
-                                <span class="inline-block bg-gray-100 text-sketch-ink text-xs font-bold px-2 py-1 rounded border border-sketch-line">${event.time}</span>
-                                ${hasDetails ? '<i class="fas fa-chevron-down text-gray-400 expand-icon"></i>' : ''}
+                        <div class="relative pl-10 pb-6 group z-10">
+                            <div class="absolute left-[18px] top-0 w-8 h-8 ${iconBg} border-2 border-sketch-ink rounded-full flex items-center justify-center z-20 shadow-sm">
+                                <i class="fas ${iconClass} text-sketch-ink text-xs"></i>
                             </div>
 
-                            <h4 class="text-base font-black text-sketch-ink">${event.desc}</h4>
+                            <div class="sketch-box p-4 bg-white relative cursor-pointer active:scale-[0.98] transition-transform"
+                                 onclick="${hasDetails ? `toggleDetails('${eventId}', this)` : ''}">
 
-                            ${hasDetails ? `
-                            <div id="${eventId}" class="event-details text-sm text-gray-600 font-medium leading-relaxed">
-                                <p class="mb-3">${event.details}</p>
-                                ${event.note ? `<p class="text-xs text-sketch-alert font-bold mb-2"><i class="fas fa-exclamation-circle mr-1"></i>${event.note}</p>` : ''}
-                                <div class="flex flex-wrap gap-2 mt-2">
-                                    ${event.mapLink ? `<a href="${event.mapLink}" target="_blank" class="inline-flex items-center px-3 py-1 text-xs bg-sketch-snow text-sketch-ink border-2 border-sketch-ink rounded-full shadow-[2px_2px_0_0_#5E4B35] active:translate-y-1 active:shadow-none transition-all" onclick="event.stopPropagation()"><i class="fas fa-map-marked-alt mr-1"></i> 📍 看地圖</a>` : ''}
-                                    ${event.reviewLink ? `<a href="${event.reviewLink}" target="_blank" class="inline-flex items-center px-3 py-1 text-xs bg-sketch-warm text-sketch-ink border-2 border-sketch-ink rounded-full shadow-[2px_2px_0_0_#5E4B35] active:translate-y-1 active:shadow-none transition-all" onclick="event.stopPropagation()"><i class="fas fa-utensils mr-1"></i> 🍴 查食記</a>` : ''}
+                                ${event.highlight ? '<div class="absolute -top-3 -right-2 important-badge transform rotate-3">重要!</div>' : ''}
+
+                                <div class="flex justify-between items-start mb-2">
+                                    <span class="inline-block bg-gray-100 text-sketch-ink text-xs font-bold px-2 py-1 rounded border border-sketch-line">${event.time}</span>
+                                    ${hasDetails ? '<i class="fas fa-chevron-down text-gray-400 expand-icon"></i>' : ''}
                                 </div>
+
+                                <h4 class="text-base font-black text-sketch-ink">${event.desc}</h4>
+
+                                ${hasDetails ? `
+                                <div id="${eventId}" class="event-details text-sm text-gray-600 font-medium leading-relaxed">
+                                    <p class="mb-3">${event.details}</p>
+                                    ${event.note ? `<p class="text-xs text-sketch-alert font-bold mb-2"><i class="fas fa-exclamation-circle mr-1"></i>${event.note}</p>` : ''}
+                                    <div class="flex flex-wrap gap-2 mt-2">
+                                        ${event.mapLink ? `<a href="${event.mapLink}" target="_blank" class="inline-flex items-center px-3 py-1 text-xs bg-sketch-snow text-sketch-ink border-2 border-sketch-ink rounded-full shadow-[2px_2px_0_0_#5E4B35] active:translate-y-1 active:shadow-none transition-all" onclick="event.stopPropagation()"><i class="fas fa-map-marked-alt mr-1"></i> 📍 看地圖</a>` : ''}
+                                        ${event.reviewLink ? `<a href="${event.reviewLink}" target="_blank" class="inline-flex items-center px-3 py-1 text-xs bg-sketch-warm text-sketch-ink border-2 border-sketch-ink rounded-full shadow-[2px_2px_0_0_#5E4B35] active:translate-y-1 active:shadow-none transition-all" onclick="event.stopPropagation()"><i class="fas fa-utensils mr-1"></i> 🍴 查食記</a>` : ''}
+                                    </div>
+                                </div>
+                                ` : ''}
                             </div>
-                            ` : ''}
-                        </div>
-                    </div>`;
+                        </div>`;
             });
 
             container.innerHTML = html;
@@ -909,18 +909,18 @@
                 const rotate = index % 2 === 0 ? '-rotate-1' : 'rotate-1';
                 // No images, just text notes
                 html += `
-                    <div class="sketch-box p-6 relative bg-white mb-4 transform ${rotate} hover:rotate-0 transition-transform">
-                        <div class="washi-tape" style="top: -12px; right: 40%; width: 80px; background-color: rgba(168, 216, 185, 0.6);"></div>
-                        <div class="flex gap-2 mb-3 flex-wrap">
-                            ${item.tags.map(t => `<span class="text-[10px] font-bold text-sketch-ink bg-sketch-warm border border-sketch-ink px-2 py-1 rounded-full">${t}</span>`).join('')}
-                        </div>
-                        <h3 class="text-xl font-black text-sketch-ink mb-3 pb-2 border-b-2 border-dashed border-sketch-line flex items-center">
-                            <span class="mr-2 text-2xl">✎</span> ${item.title}
-                        </h3>
-                        <div class="lined-paper p-4 rounded-lg border border-sketch-line text-sm text-sketch-ink font-medium relative shadow-inner">
-                            <p>${item.content}</p>
-                        </div>
-                    </div>`;
+                        <div class="sketch-box p-6 relative bg-white mb-4 transform ${rotate} hover:rotate-0 transition-transform">
+                            <div class="washi-tape" style="top: -12px; right: 40%; width: 80px; background-color: rgba(168, 216, 185, 0.6);"></div>
+                            <div class="flex gap-2 mb-3 flex-wrap">
+                                ${item.tags.map(t => `<span class="text-[10px] font-bold text-sketch-ink bg-sketch-warm border border-sketch-ink px-2 py-1 rounded-full">${t}</span>`).join('')}
+                            </div>
+                            <h3 class="text-xl font-black text-sketch-ink mb-3 pb-2 border-b-2 border-dashed border-sketch-line flex items-center">
+                                <span class="mr-2 text-2xl">✎</span> ${item.title}
+                            </h3>
+                            <div class="lined-paper p-4 rounded-lg border border-sketch-line text-sm text-sketch-ink font-medium relative shadow-inner">
+                                <p>${item.content}</p>
+                            </div>
+                        </div>`;
             });
             container.innerHTML = html;
         }
@@ -1008,19 +1008,19 @@
                 const li = document.createElement('li');
                 li.className = "sketch-box p-3 flex items-center gap-3 bg-white mb-2";
                 li.innerHTML = `
-                        ${ex.image ? `<div class="w-12 h-12 bg-gray-100 flex-shrink-0 flex items-center justify-center overflow-hidden border-2 border-sketch-ink rounded-lg"><img src="${ex.image}" class="w-full h-full object-cover" onclick="showImage('${ex.image}')"></div>` : `<div class="w-12 h-12 bg-sketch-snow flex-shrink-0 flex items-center justify-center text-sketch-ink text-xl border-2 border-sketch-ink rounded-lg"><i class="fas fa-receipt"></i></div>`}
-                        <div class="flex-1 min-w-0">
-                            <div class="flex justify-between items-baseline">
-                                <h4 class="text-sm font-black text-sketch-ink truncate pr-2">${ex.item}</h4>
-                                <span class="font-black text-base text-sketch-ink">¥${ex.amount.toLocaleString()}</span>
+                            ${ex.image ? `<div class="w-12 h-12 bg-gray-100 flex-shrink-0 flex items-center justify-center overflow-hidden border-2 border-sketch-ink rounded-lg"><img src="${ex.image}" class="w-full h-full object-cover" onclick="showImage('${ex.image}')"></div>` : `<div class="w-12 h-12 bg-sketch-snow flex-shrink-0 flex items-center justify-center text-sketch-ink text-xl border-2 border-sketch-ink rounded-lg"><i class="fas fa-receipt"></i></div>`}
+                            <div class="flex-1 min-w-0">
+                                <div class="flex justify-between items-baseline">
+                                    <h4 class="text-sm font-black text-sketch-ink truncate pr-2">${ex.item}</h4>
+                                    <span class="font-black text-base text-sketch-ink">¥${ex.amount.toLocaleString()}</span>
+                                </div>
+                                <div class="flex justify-between items-center mt-1">
+                                    <span class="text-[10px] text-gray-500 font-bold">${ex.date}</span>
+                                    <span class="text-[10px] text-sketch-alert font-bold">≈ NT$ ${twd.toLocaleString()}</span>
+                                </div>
                             </div>
-                            <div class="flex justify-between items-center mt-1">
-                                <span class="text-[10px] text-gray-500 font-bold">${ex.date}</span>
-                                <span class="text-[10px] text-sketch-alert font-bold">≈ NT$ ${twd.toLocaleString()}</span>
-                            </div>
-                        </div>
-                        <button onclick="deleteExpense(${index})" class="text-gray-400 hover:text-sketch-alert px-2"><i class="fas fa-trash-alt"></i></button>
-                    `;
+                            <button onclick="deleteExpense(${index})" class="text-gray-400 hover:text-sketch-alert px-2"><i class="fas fa-trash-alt"></i></button>
+                        `;
                 list.appendChild(li);
             });
             totalEl.innerText = total.toLocaleString();
@@ -1036,10 +1036,10 @@
                 const div = document.createElement('div');
                 div.className = "flex items-center gap-3 bg-white p-2 rounded border-b-2 border-sketch-line border-dashed";
                 div.innerHTML = `
-                        <input type="checkbox" class="w-5 h-5 accent-sketch-ink cursor-pointer" ${todo.done ? 'checked' : ''} onchange="toggleTodo(${index})">
-                        <span class="text-sm font-bold text-sketch-ink flex-1 ${todo.done ? 'line-through text-gray-400 decoration-wavy' : ''}">${todo.text}</span>
-                        <button onclick="removeTodo(${index})" class="text-gray-300 hover:text-sketch-alert"><i class="fas fa-times"></i></button>
-                    `;
+                            <input type="checkbox" class="w-5 h-5 accent-sketch-ink cursor-pointer" ${todo.done ? 'checked' : ''} onchange="toggleTodo(${index})">
+                            <span class="text-sm font-bold text-sketch-ink flex-1 ${todo.done ? 'line-through text-gray-400 decoration-wavy' : ''}">${todo.text}</span>
+                            <button onclick="removeTodo(${index})" class="text-gray-300 hover:text-sketch-alert"><i class="fas fa-times"></i></button>
+                        `;
                 container.appendChild(div);
             });
         }
