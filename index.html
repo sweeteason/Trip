@@ -356,7 +356,12 @@
             }
         ];
 
+        // 更新 Guide 資料 (導覽內容擴充)
         const guideData = [
+            { title: "小樽堺町通り商店街", content: "充滿懷舊風情的必逛街道！這條街上有著名的「小樽音樂盒堂」、「北一硝子」玻璃工坊，還有超好吃的「LeTAO」起司蛋糕總店。想買伴手禮來這裡準沒錯！", tags: ["購物", "散步", "小樽"] },
+            { title: "大丸札幌店 (Daimaru)", content: "與札幌車站直結，非常好逛！8樓有必去的「Pokémon Center Sapporo (寶可夢中心)」，B1 地下食品街 (Depachika) 更是美食天堂，各種甜點便當應有盡有。", tags: ["寶可夢", "美食", "伴手禮"] },
+            { title: "狸小路商店街", content: "札幌最經典的商店街，從1丁目到7丁目都有屋頂，下大雪也不怕！藥妝店(如松本清、札幌藥妝)、唐吉軻德都在這裡，是掃貨的聖地。", tags: ["藥妝", "必逛", "雨備"] },
+            { title: "札幌工廠 (Sapporo Factory)", content: "由紅磚啤酒廠改建的購物中心，保留了巨大的煙囪。中庭 (Atrium) 非常挑高寬敞，冬季會有巨大的室內聖誕樹，氣氛超級浪漫！", tags: ["紅磚", "拍照", "室內"] },
             { title: "白色戀人公園", content: "不只是賣餅乾，更像一座雪國城堡！冬季庭園有盛大點燈，一定要在戶外愛心拱門拍照。", tags: ["浪漫", "必去"] },
             { title: "企鵝散步", content: "旭山動物園冬季限定！看著國王企鵝搖搖晃晃走在雪道上，萌翻天。", tags: ["動物", "限定"] },
             { title: "小樽運河", content: "黃昏時分煤氣燈亮起是最浪漫的時刻。站在「淺草橋」上可以拍到最經典角度。", tags: ["拍照", "夜景"] },
@@ -364,7 +369,7 @@
             { title: "精靈露台", content: "富良野森林裡的小木屋，點燈後像精靈居住的夢幻國度。", tags: ["夢幻", "手作"] }
         ];
 
-        let expenses = JSON.parse(localStorage.getItem('expenses_book_2025_v10')) || [];
+        let expenses = JSON.parse(localStorage.getItem('expenses_book_2025_v11')) || [];
         
         let todoList = JSON.parse(localStorage.getItem('todo_book_2025_v7')) || [
             { text: "護照 (效期6個月以上) 📕", done: false },
@@ -388,7 +393,7 @@
             renderTodoList();
             
             // 讀取人數設定
-            const savedCount = localStorage.getItem('traveler_count_v10');
+            const savedCount = localStorage.getItem('traveler_count_v11');
             if (savedCount) document.getElementById('traveler-count').value = savedCount;
             updateSplitCalc();
 
@@ -594,7 +599,7 @@
                 isAdvance: isAdvance 
             });
             
-            localStorage.setItem('expenses_book_2025_v10', JSON.stringify(expenses));
+            localStorage.setItem('expenses_book_2025_v11', JSON.stringify(expenses));
             renderExpenses();
             updateSplitCalc();
             
@@ -608,7 +613,7 @@
 
         function updateSplitCalc() {
             const travelerCount = parseInt(document.getElementById('traveler-count').value) || 2;
-            localStorage.setItem('traveler_count_v10', travelerCount); // 儲存人數
+            localStorage.setItem('traveler_count_v11', travelerCount); // 儲存人數
             
             let totalAdvance = 0;
             expenses.forEach(ex => {
@@ -682,14 +687,14 @@
         function deleteExpense(index) { 
             if (confirm("要刪除這筆紀錄嗎？")) { 
                 expenses.splice(index, 1); 
-                localStorage.setItem('expenses_book_2025_v10', JSON.stringify(expenses)); 
+                localStorage.setItem('expenses_book_2025_v11', JSON.stringify(expenses)); 
                 renderExpenses(); 
             } 
         }
         function clearExpenses() { 
             if (confirm("確定要清空所有紀錄嗎？")) { 
                 expenses = []; 
-                localStorage.setItem('expenses_book_2025_v10', JSON.stringify(expenses)); 
+                localStorage.setItem('expenses_book_2025_v11', JSON.stringify(expenses)); 
                 renderExpenses(); 
             } 
         }
