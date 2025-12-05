@@ -292,7 +292,9 @@
                     { time: "08:30", desc: "諏訪神社", type: "spot", details: "必買超可愛「銀喉長尾山雀」御守！" },
                     { time: "09:30", desc: "北海道大學", type: "spot", details: "必去 Marche Café 吃農場冰淇淋。" },
                     { time: "12:00", desc: "叙々苑燒肉 🔥", type: "food", highlight: true, note: "預約12:00", details: "高級燒肉午間套餐 CP 值高。" },
-                    { time: "13:30", desc: "市區散步", type: "walk", details: "紅磚廳舍、時計台、六花亭。" },
+                    { time: "13:30", desc: "紅磚廳舍 & 北菓樓", type: "walk", details: "必拍紅磚建築。北菓樓本館(安藤忠雄設計)必吃「夢不思議」大泡芙！" },
+                    { time: "14:30", desc: "時計台 & 札幌工廠", type: "walk", details: "路過拍時計台。札幌工廠有巨大聖誕樹(室內)，氣氛超棒！" },
+                    { time: "16:00", desc: "百貨商場 & 狸小路", type: "shop", details: "推薦：大丸(寶可夢中心)、Stellar Place(年輕時尚)、Parco。最後去狸小路掃藥妝。" },
                     { time: "17:00", desc: "COCONO SUSUKINO", type: "shop", details: "薄野新地標。晚餐吃根室花丸。" },
                     { time: "19:00", desc: "聖誕市集", type: "spot", details: "大通公園慕尼黑聖誕市集。" }
                 ]
@@ -362,7 +364,7 @@
             { title: "精靈露台", content: "富良野森林裡的小木屋，點燈後像精靈居住的夢幻國度。", tags: ["夢幻", "手作"] }
         ];
 
-        let expenses = JSON.parse(localStorage.getItem('expenses_book_2025_v9')) || [];
+        let expenses = JSON.parse(localStorage.getItem('expenses_book_2025_v10')) || [];
         
         let todoList = JSON.parse(localStorage.getItem('todo_book_2025_v7')) || [
             { text: "護照 (效期6個月以上) 📕", done: false },
@@ -386,7 +388,7 @@
             renderTodoList();
             
             // 讀取人數設定
-            const savedCount = localStorage.getItem('traveler_count_v9');
+            const savedCount = localStorage.getItem('traveler_count_v10');
             if (savedCount) document.getElementById('traveler-count').value = savedCount;
             updateSplitCalc();
 
@@ -457,6 +459,7 @@
                 else if (event.type === 'stay') { iconClass = 'fa-bed'; iconColor = 'text-white'; circleBg = 'bg-kawaii-purple'; circleBorder = 'border-kawaii-purple'; }
                 else if (event.type === 'spot') { iconClass = 'fa-camera'; iconColor = 'text-white'; circleBg = 'bg-kawaii-green'; circleBorder = 'border-kawaii-green'; }
                 else if (event.type === 'shop') { iconClass = 'fa-shopping-bag'; iconColor = 'text-white'; circleBg = 'bg-kawaii-accent'; circleBorder = 'border-kawaii-accent'; }
+                else if (event.type === 'walk') { iconClass = 'fa-walking'; iconColor = 'text-white'; circleBg = 'bg-orange-300'; circleBorder = 'border-orange-300'; }
 
                 html += `
                     <div class="relative pl-10 pb-5 z-10 group">
@@ -591,7 +594,7 @@
                 isAdvance: isAdvance 
             });
             
-            localStorage.setItem('expenses_book_2025_v9', JSON.stringify(expenses));
+            localStorage.setItem('expenses_book_2025_v10', JSON.stringify(expenses));
             renderExpenses();
             updateSplitCalc();
             
@@ -605,7 +608,7 @@
 
         function updateSplitCalc() {
             const travelerCount = parseInt(document.getElementById('traveler-count').value) || 2;
-            localStorage.setItem('traveler_count_v9', travelerCount); // 儲存人數
+            localStorage.setItem('traveler_count_v10', travelerCount); // 儲存人數
             
             let totalAdvance = 0;
             expenses.forEach(ex => {
@@ -679,14 +682,14 @@
         function deleteExpense(index) { 
             if (confirm("要刪除這筆紀錄嗎？")) { 
                 expenses.splice(index, 1); 
-                localStorage.setItem('expenses_book_2025_v9', JSON.stringify(expenses)); 
+                localStorage.setItem('expenses_book_2025_v10', JSON.stringify(expenses)); 
                 renderExpenses(); 
             } 
         }
         function clearExpenses() { 
             if (confirm("確定要清空所有紀錄嗎？")) { 
                 expenses = []; 
-                localStorage.setItem('expenses_book_2025_v9', JSON.stringify(expenses)); 
+                localStorage.setItem('expenses_book_2025_v10', JSON.stringify(expenses)); 
                 renderExpenses(); 
             } 
         }
