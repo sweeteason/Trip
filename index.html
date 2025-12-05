@@ -369,7 +369,7 @@
             { title: "精靈露台", content: "富良野森林裡的小木屋，點燈後像精靈居住的夢幻國度。", tags: ["夢幻", "手作"] }
         ];
 
-        let expenses = JSON.parse(localStorage.getItem('expenses_book_2025_v11')) || [];
+        let expenses = JSON.parse(localStorage.getItem('expenses_book_2025_v12')) || [];
         
         let todoList = JSON.parse(localStorage.getItem('todo_book_2025_v7')) || [
             { text: "護照 (效期6個月以上) 📕", done: false },
@@ -396,6 +396,14 @@
             const savedCount = localStorage.getItem('traveler_count_v11');
             if (savedCount) document.getElementById('traveler-count').value = savedCount;
             updateSplitCalc();
+
+            // 讀取隨手記 (v12新增修復)
+            const savedMemo = localStorage.getItem('memo_book_2025_v1');
+            if (savedMemo) document.getElementById('memo-area').value = savedMemo;
+
+            document.getElementById('memo-area').addEventListener('input', function() {
+                localStorage.setItem('memo_book_2025_v1', this.value);
+            });
 
             document.getElementById('exchange-rate').addEventListener('input', calculate);
             document.getElementById('calc-input').addEventListener('input', calculate);
@@ -599,7 +607,7 @@
                 isAdvance: isAdvance 
             });
             
-            localStorage.setItem('expenses_book_2025_v11', JSON.stringify(expenses));
+            localStorage.setItem('expenses_book_2025_v12', JSON.stringify(expenses));
             renderExpenses();
             updateSplitCalc();
             
@@ -687,14 +695,14 @@
         function deleteExpense(index) { 
             if (confirm("要刪除這筆紀錄嗎？")) { 
                 expenses.splice(index, 1); 
-                localStorage.setItem('expenses_book_2025_v11', JSON.stringify(expenses)); 
+                localStorage.setItem('expenses_book_2025_v12', JSON.stringify(expenses)); 
                 renderExpenses(); 
             } 
         }
         function clearExpenses() { 
             if (confirm("確定要清空所有紀錄嗎？")) { 
                 expenses = []; 
-                localStorage.setItem('expenses_book_2025_v11', JSON.stringify(expenses)); 
+                localStorage.setItem('expenses_book_2025_v12', JSON.stringify(expenses)); 
                 renderExpenses(); 
             } 
         }
