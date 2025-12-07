@@ -4,20 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>2025 北海道冬の旅手帳 ❄️</title>
+
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#FDFBF7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: { kawaii: { base: '#FDFBF7', text: '#4A4036', primary: '#FF9EAA', secondary: '#89CFF0', accent: '#FFD54F', green: '#A7D7C5', purple: '#D4C1EC', card: '#FFFFFF' } },
+                    colors: {
+                        kawaii: {
+                            base: '#FDFBF7', text: '#4A4036', primary: '#FF9EAA', secondary: '#89CFF0',
+                            accent: '#FFD54F', green: '#A7D7C5', purple: '#D4C1EC', card: '#FFFFFF'
+                        }
+                    },
                     fontFamily: { sans: ['"Zen Maru Gothic"', 'sans-serif'] },
-                    boxShadow: { 'soft': '0 4px 20px -2px rgba(255, 158, 170, 0.15)', 'card': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)', 'glow': '0 0 15px rgba(255, 158, 170, 0.5)' },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(255, 158, 170, 0.15)',
+                        'card': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
+                        'glow': '0 0 15px rgba(255, 158, 170, 0.5)' 
+                    },
                     animation: { 'bounce-slow': 'bounce 3s infinite' }
                 }
             }
@@ -45,7 +57,9 @@
 
     <div class="snow-container">
         <div class="snowflake" style="left: 10%; animation-delay: 0s;">❄</div>
+        <div class="snowflake" style="left: 25%; animation-delay: 2s; font-size: 0.8rem;">❅</div>
         <div class="snowflake" style="left: 50%; animation-delay: 4s;">❄</div>
+        <div class="snowflake" style="left: 75%; animation-delay: 1s; font-size: 1.2rem;">❅</div>
         <div class="snowflake" style="left: 90%; animation-delay: 3s;">❄</div>
     </div>
 
@@ -118,6 +132,7 @@
                     <button onclick="appendCalc('-')" class="h-10 rounded-xl bg-gray-50 font-bold text-gray-400 hover:bg-gray-100">-</button>
                     <button onclick="appendCalc('*')" class="h-10 rounded-xl bg-gray-50 font-bold text-gray-400 hover:bg-gray-100">×</button>
                     <button onclick="appendCalc('/')" class="h-10 rounded-xl bg-gray-50 font-bold text-gray-400 hover:bg-gray-100">÷</button>
+                    
                     <button onclick="appendCalc('7')" class="h-12 rounded-2xl bg-white shadow-card font-black text-lg text-kawaii-text active:scale-95 transition-transform">7</button>
                     <button onclick="appendCalc('8')" class="h-12 rounded-2xl bg-white shadow-card font-black text-lg text-kawaii-text active:scale-95 transition-transform">8</button>
                     <button onclick="appendCalc('9')" class="h-12 rounded-2xl bg-white shadow-card font-black text-lg text-kawaii-text active:scale-95 transition-transform">9</button>
@@ -272,6 +287,24 @@
 
     <script>
         // 資料與邏輯部分
+        
+        // ★★★ 關鍵修正：將變數宣告移到最上方，確保全域可存取 ★★★
+        let currentPhotoBase64 = null;
+        let expenses = JSON.parse(localStorage.getItem('expenses_book_2025_v13')) || [];
+        let todoList = JSON.parse(localStorage.getItem('todo_book_2025_v7')) || [
+            { text: "護照 (效期6個月以上) 📕", done: false },
+            { text: "Visit Japan Web (截圖備用) 📱", done: false },
+            { text: "旅遊保險 (平安險+不便險) 📄", done: false },
+            { text: "eSIM / 漫遊設定完成 📶", done: false },
+            { text: "日幣現金 & 信用卡 (JCB/Visa) 💴", done: false },
+            { text: "交通卡 (Suica/ICOCA) 🐧", done: false },
+            { text: "防滑雪靴 & 防水手套 🧤", done: false },
+            { text: "防寒衣物 (發熱衣/毛帽/圍巾) 🧣", done: false },
+            { text: "個人盥洗 (牙刷/牙膏) 🪥", done: false },
+            { text: "充電器 & 行動電源 (低溫耗電快) 🔋", done: false },
+            { text: "常備藥 (感冒/暈車/外傷/止痛) 💊", done: false }
+        ];
+
         const itineraryData = [
             {
                 date: "12/20", day: "六", title: "前進雪國 ✈️", active: true,
@@ -299,7 +332,6 @@
                     { time: "19:00", desc: "聖誕市集", type: "spot", details: "大通公園慕尼黑聖誕市集。" }
                 ]
             },
-            // ... (其他天數維持原樣，篇幅關係省略，請保持您原有的資料)
             {
                 date: "12/22", day: "一", title: "登別洞爺一日遊 🚌", active: false,
                 weather: { icon: "fa-cloud-sun", temp: "-1°", desc: "晴時雲" },
@@ -369,28 +401,10 @@
             { title: "精靈露台", content: "富良野森林裡的小木屋，點燈後像精靈居住的夢幻國度。", tags: ["夢幻", "手作"] }
         ];
 
-        let expenses = JSON.parse(localStorage.getItem('expenses_book_2025_v13')) || [];
-        let todoList = JSON.parse(localStorage.getItem('todo_book_2025_v7')) || [
-            { text: "護照 (效期6個月以上) 📕", done: false },
-            { text: "Visit Japan Web (截圖備用) 📱", done: false },
-            { text: "旅遊保險 (平安險+不便險) 📄", done: false },
-            { text: "eSIM / 漫遊設定完成 📶", done: false },
-            { text: "日幣現金 & 信用卡 (JCB/Visa) 💴", done: false },
-            { text: "交通卡 (Suica/ICOCA) 🐧", done: false },
-            { text: "防滑雪靴 & 防水手套 🧤", done: false },
-            { text: "防寒衣物 (發熱衣/毛帽/圍巾) 🧣", done: false },
-            { text: "個人盥洗 (牙刷/牙膏) 🪥", done: false },
-            { text: "充電器 & 行動電源 (低溫耗電快) 🔋", done: false },
-            { text: "常備藥 (感冒/暈車/外傷/止痛) 💊", done: false }
-        ];
-
-        // --- 核心邏輯 ---
-        
-        // 1. 產生或讀取唯一的裝置 ID
+        // 核心邏輯
         function getDeviceId() {
             let id = localStorage.getItem('my_device_id');
             if (!id) {
-                // 簡單產生一個隨機 ID
                 id = 'user_' + Math.random().toString(36).substr(2, 9);
                 localStorage.setItem('my_device_id', id);
             }
@@ -404,15 +418,12 @@
             renderExpenses();
             renderTodoList();
             
-            // 顯示裝置 ID
             document.getElementById('my-device-id').innerText = getDeviceId();
 
-            // 讀取人數
             const savedCount = localStorage.getItem('traveler_count_v11');
             if (savedCount) document.getElementById('traveler-count').value = savedCount;
             updateSplitCalc();
 
-            // 讀取隨手記
             const savedMemo = localStorage.getItem('memo_book_2025_v1');
             if (savedMemo) document.getElementById('memo-area').value = savedMemo;
 
@@ -424,9 +435,6 @@
             document.getElementById('calc-input').addEventListener('input', calculate);
         };
 
-        // ... (中間的 UI 渲染函式: switchTab, renderPlanTabs, renderTimeline, toggleDetails, renderGuide, appendCalc, clearCalc, calculate, handlePhotoUpload, clearPhoto, addExpense, updateSplitCalc, renderExpenses, deleteExpense, clearExpenses, renderTodoList, toggleTodo, addTodo, removeTodo, saveTodo 保持不變，直接沿用即可) ...
-        
-        // 為了完整性，這裡重寫一次關鍵函式 (若您複製貼上，請確保這些函式都在)
         function switchTab(tabId, btn) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
             document.getElementById('tab-' + tabId).classList.add('active');
@@ -538,7 +546,6 @@
         function removeTodo(index) { todoList.splice(index, 1); saveTodo(); }
         function saveTodo() { localStorage.setItem('todo_book_2025_v7', JSON.stringify(todoList)); renderTodoList(); }
 
-        // --- Google Sheet Sync Logic (Enhanced for Multi-User) ---
         const GAS_URL = "https://script.google.com/macros/s/AKfycbynC94_BpKWXOL9379FVXkTwfx147C7f6p6XdJcLYDZJhxAUlNqKzum7Zr8q7BA-Dag/exec";
 
         async function syncToCloud() {
@@ -554,7 +561,6 @@
                 btn.disabled = true;
                 btn.classList.add('opacity-50');
 
-                // 使用 text/plain 避免 CORS preflight，並傳送 DeviceID
                 const response = await fetch(GAS_URL, {
                     method: 'POST',
                     mode: 'no-cors',
@@ -591,7 +597,6 @@
                 btn.disabled = true;
                 btn.classList.add('opacity-50');
 
-                // 在 URL 中帶上 DeviceID 進行篩選
                 const response = await fetch(`${GAS_URL}?deviceId=${myId}`);
                 const data = await response.json();
 
