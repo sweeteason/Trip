@@ -51,6 +51,12 @@
         .snow-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
         .snowflake { position: absolute; color: #BDE0FE; font-size: 1rem; text-shadow: 0 0 5px rgba(255,255,255,0.8); animation: snow 15s linear infinite; }
         @keyframes snow { 0% { transform: translateY(-10px) translateX(0) rotate(0deg); opacity: 0; } 20% { opacity: 0.8; } 100% { transform: translateY(100vh) translateX(20px) rotate(360deg); opacity: 0.2; } }
+        
+        /* 翻譯卡片特效 */
+        .phrase-card:active { transform: scale(0.98); background-color: #F0F9FF; }
+        .speaking { border-color: #FF9EAA; background-color: #FFF0F5; }
+        .speaking i { animation: pulse 1s infinite; color: #FF9EAA; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
     </style>
 </head>
 <body class="font-sans flex flex-col relative text-kawaii-text selection:bg-kawaii-primary selection:text-white">
@@ -87,6 +93,37 @@
             <div id="date-scroll" class="flex overflow-x-auto gap-3 pb-4 mb-2 hide-scrollbar sticky top-[70px] z-30 py-2 -mx-4 px-4 bg-gradient-to-b from-kawaii-base via-kawaii-base to-transparent"></div>
             <div id="itinerary-container" class="space-y-6 relative pl-2 pr-2 mt-2"></div>
             <div class="text-center mt-12 mb-8"><p class="text-xs text-gray-300 font-bold">—— 每一天都是新的冒險 ——</p></div>
+        </div>
+
+        <div id="tab-translate" class="tab-content px-1">
+            <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-[32px] p-6 shadow-soft mb-6 relative border-2 border-white">
+                <div class="absolute -top-3 -left-3 w-12 h-12 bg-white rounded-full flex items-center justify-center text-2xl shadow-md">🗣️</div>
+                <h3 class="text-lg font-black mb-4 pl-8 text-indigo-800">翻譯神器</h3>
+                
+                <div class="grid grid-cols-2 gap-3 mb-4">
+                    <a href="https://translate.google.com/?sl=zh-TW&tl=ja&op=translate" target="_blank" class="bg-white p-4 rounded-2xl shadow-sm flex flex-col items-center gap-2 active:scale-95 transition-all">
+                        <i class="fas fa-language text-3xl text-blue-500"></i>
+                        <span class="text-xs font-black text-gray-600">Google 翻譯</span>
+                        <span class="text-[9px] text-gray-400">文字 / 語音</span>
+                    </a>
+                    <a href="https://lens.google/" target="_blank" class="bg-white p-4 rounded-2xl shadow-sm flex flex-col items-center gap-2 active:scale-95 transition-all">
+                        <i class="fas fa-camera text-3xl text-pink-500"></i>
+                        <span class="text-xs font-black text-gray-600">拍照翻譯</span>
+                        <span class="text-[9px] text-gray-400">Google Lens</span>
+                    </a>
+                </div>
+                <p class="text-[10px] text-gray-400 text-center">💡 點擊上方按鈕開啟外部工具</p>
+            </div>
+
+            <div class="flex items-center gap-2 mb-4 px-2">
+                <h3 class="font-black text-lg text-kawaii-text">手指日語</h3>
+                <span class="text-xs bg-kawaii-primary text-white px-2 py-1 rounded-full font-bold">點擊發音 🔊</span>
+            </div>
+
+            <div id="phrase-container" class="space-y-3">
+                </div>
+            
+            <div class="h-10"></div>
         </div>
 
         <div id="tab-guide" class="tab-content">
@@ -261,26 +298,30 @@
     </main>
 
     <nav class="nav-bar-float fixed bottom-0 left-0 w-full pb-safe z-50">
-        <div class="flex justify-around items-end h-20 px-2">
-            <button class="nav-item active w-full h-full pb-2 flex flex-col items-center justify-end transition-all duration-300 group" onclick="switchTab('plan', this)">
+        <div class="flex justify-around items-end h-20 px-1">
+            <button class="nav-item active flex-1 h-full pb-2 flex flex-col items-center justify-end transition-all duration-300 group" onclick="switchTab('plan', this)">
                 <div class="icon-container w-10 h-10 rounded-2xl flex items-center justify-center mb-1 transition-all duration-300 bg-transparent text-gray-400"><i class="fas fa-map-marked-alt text-lg"></i></div>
-                <span class="text-[10px] font-bold text-gray-400 group-[.active]:text-kawaii-primary transition-colors">行程</span>
+                <span class="text-[9px] font-bold text-gray-400 group-[.active]:text-kawaii-primary transition-colors">行程</span>
             </button>
-            <button class="nav-item w-full h-full pb-2 flex flex-col items-center justify-end transition-all duration-300 group" onclick="switchTab('guide', this)">
+            <button class="nav-item flex-1 h-full pb-2 flex flex-col items-center justify-end transition-all duration-300 group" onclick="switchTab('guide', this)">
                 <div class="icon-container w-10 h-10 rounded-2xl flex items-center justify-center mb-1 transition-all duration-300 bg-transparent text-gray-400"><i class="fas fa-book-open text-lg"></i></div>
-                <span class="text-[10px] font-bold text-gray-400 group-[.active]:text-kawaii-primary transition-colors">導覽</span>
+                <span class="text-[9px] font-bold text-gray-400 group-[.active]:text-kawaii-primary transition-colors">導覽</span>
             </button>
-            <button class="nav-item w-full h-full pb-2 flex flex-col items-center justify-end transition-all duration-300 group" onclick="switchTab('wallet', this)">
+            <button class="nav-item flex-1 h-full pb-2 flex flex-col items-center justify-end transition-all duration-300 group" onclick="switchTab('wallet', this)">
                 <div class="icon-container w-12 h-12 rounded-[20px] flex items-center justify-center mb-1 transition-all duration-300 bg-transparent text-gray-400 -mt-4 group-[.active]:-mt-6"><i class="fas fa-wallet text-xl"></i></div>
-                <span class="text-[10px] font-bold text-gray-400 group-[.active]:text-kawaii-primary transition-colors">錢包</span>
+                <span class="text-[9px] font-bold text-gray-400 group-[.active]:text-kawaii-primary transition-colors">錢包</span>
             </button>
-            <button class="nav-item w-full h-full pb-2 flex flex-col items-center justify-end transition-all duration-300 group" onclick="switchTab('lists', this)">
+            <button class="nav-item flex-1 h-full pb-2 flex flex-col items-center justify-end transition-all duration-300 group" onclick="switchTab('translate', this)">
+                <div class="icon-container w-10 h-10 rounded-2xl flex items-center justify-center mb-1 transition-all duration-300 bg-transparent text-gray-400"><i class="fas fa-language text-lg"></i></div>
+                <span class="text-[9px] font-bold text-gray-400 group-[.active]:text-kawaii-primary transition-colors">翻譯</span>
+            </button>
+            <button class="nav-item flex-1 h-full pb-2 flex flex-col items-center justify-end transition-all duration-300 group" onclick="switchTab('lists', this)">
                 <div class="icon-container w-10 h-10 rounded-2xl flex items-center justify-center mb-1 transition-all duration-300 bg-transparent text-gray-400"><i class="fas fa-tasks text-lg"></i></div>
-                <span class="text-[10px] font-bold text-gray-400 group-[.active]:text-kawaii-primary transition-colors">清單</span>
+                <span class="text-[9px] font-bold text-gray-400 group-[.active]:text-kawaii-primary transition-colors">清單</span>
             </button>
-            <button class="nav-item w-full h-full pb-2 flex flex-col items-center justify-end transition-all duration-300 group" onclick="switchTab('info', this)">
+            <button class="nav-item flex-1 h-full pb-2 flex flex-col items-center justify-end transition-all duration-300 group" onclick="switchTab('info', this)">
                 <div class="icon-container w-10 h-10 rounded-2xl flex items-center justify-center mb-1 transition-all duration-300 bg-transparent text-gray-400"><i class="fas fa-info-circle text-lg"></i></div>
-                <span class="text-[10px] font-bold text-gray-400 group-[.active]:text-kawaii-primary transition-colors">資訊</span>
+                <span class="text-[9px] font-bold text-gray-400 group-[.active]:text-kawaii-primary transition-colors">資訊</span>
             </button>
         </div>
     </nav>
@@ -303,6 +344,22 @@
             { text: "個人盥洗 (牙刷/牙膏) 🪥", done: false },
             { text: "充電器 & 行動電源 (低溫耗電快) 🔋", done: false },
             { text: "常備藥 (感冒/暈車/外傷/止痛) 💊", done: false }
+        ];
+
+        // 翻譯語句資料
+        const phrases = [
+            { zh: "不好意思 (請問)", ja: "すみません", romaji: "Sumimasen", icon: "fa-hand-paper" },
+            { zh: "謝謝", ja: "ありがとうございます", romaji: "Arigatou gozaimasu", icon: "fa-smile" },
+            { zh: "這個多少錢？", ja: "これはいくらですか？", romaji: "Kore wa ikura desu ka?", icon: "fa-tag" },
+            { zh: "請給我這個", ja: "これをください", romaji: "Kore o kudasai", icon: "fa-shopping-cart" },
+            { zh: "可以刷卡嗎？", ja: "カードは使えますか？", romaji: "Ka-do wa tsukaemasu ka?", icon: "fa-credit-card" },
+            { zh: "洗手間在哪裡？", ja: "トイレはどこですか？", romaji: "Toire wa doko desu ka?", icon: "fa-restroom" },
+            { zh: "請結帳", ja: "お会計をお願いします", romaji: "Okaikei o onegaishimasu", icon: "fa-file-invoice-dollar" },
+            { zh: "不要塑膠袋", ja: "袋は要りません", romaji: "Fukuro wa irimasen", icon: "fa-shopping-bag" },
+            { zh: "有推薦的嗎？", ja: "おすすめはありますか？", romaji: "Osusume wa arimasu ka?", icon: "fa-thumbs-up" },
+            { zh: "兩位 (用餐)", ja: "二人です", romaji: "Futari desu", icon: "fa-user-friends" },
+            { zh: "水 (請給我水)", ja: "お水をください", romaji: "Omizu o kudasai", icon: "fa-glass-whiskey" },
+            { zh: "我不懂日文", ja: "日本語がわかりません", romaji: "Nihongo ga wakarimasen", icon: "fa-comment-slash" }
         ];
 
         const itineraryData = [
@@ -420,6 +477,7 @@
             renderGuide();
             renderExpenses();
             renderTodoList();
+            renderPhrases(); // Render translation cards
             
             document.getElementById('my-device-id').innerText = getDeviceId();
 
@@ -445,6 +503,49 @@
             btn.classList.add('active');
             window.scrollTo(0, 0);
         }
+
+        // --- 翻譯功能 ---
+        function renderPhrases() {
+            const container = document.getElementById('phrase-container');
+            let html = '';
+            phrases.forEach(p => {
+                // escape single quotes for onclick
+                const jaText = p.ja.replace(/'/g, "\\'");
+                html += `
+                <div class="phrase-card bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex items-center justify-between cursor-pointer transition-transform" onclick="speak('${jaText}', this)">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-blue-50 text-blue-400 flex items-center justify-center text-lg"><i class="fas ${p.icon}"></i></div>
+                        <div>
+                            <div class="text-sm font-black text-gray-700">${p.zh}</div>
+                            <div class="text-[10px] text-gray-400 font-medium">${p.romaji}</div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-base font-black text-kawaii-text mb-1">${p.ja}</div>
+                        <i class="fas fa-volume-up text-kawaii-primary text-sm opacity-50"></i>
+                    </div>
+                </div>`;
+            });
+            container.innerHTML = html;
+        }
+
+        function speak(text, cardElement) {
+            if ('speechSynthesis' in window) {
+                // Visual feedback
+                if(cardElement) {
+                    cardElement.classList.add('speaking');
+                    setTimeout(() => cardElement.classList.remove('speaking'), 2000);
+                }
+
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'ja-JP'; // Set language to Japanese
+                utterance.rate = 0.9; // Slightly slower for clarity
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert("您的手機瀏覽器不支援語音發音功能 🥲");
+            }
+        }
+
         function renderPlanTabs() {
             const container = document.getElementById('date-scroll');
             container.innerHTML = '';
@@ -478,6 +579,8 @@
                 else if (event.type === 'spot') { iconClass = 'fa-camera'; iconColor = 'text-white'; circleBg = 'bg-kawaii-green'; circleBorder = 'border-kawaii-green'; }
                 else if (event.type === 'shop') { iconClass = 'fa-shopping-bag'; iconColor = 'text-white'; circleBg = 'bg-kawaii-accent'; circleBorder = 'border-kawaii-accent'; }
                 else if (event.type === 'walk') { iconClass = 'fa-walking'; iconColor = 'text-white'; circleBg = 'bg-orange-300'; circleBorder = 'border-orange-300'; }
+                else if (event.type === 'activity') { iconClass = 'fa-glass-cheers'; iconColor = 'text-white'; circleBg = 'bg-pink-400'; circleBorder = 'border-pink-400'; }
+
                 html += `<div class="relative pl-10 pb-5 z-10 group"><div class="absolute left-[18px] top-4 w-6 h-6 ${circleBg} ${circleBorder} border-2 rounded-full flex items-center justify-center z-20 shadow-md transform transition-transform group-hover:scale-110"><i class="fas ${iconClass} ${iconColor} text-[10px]"></i></div><div class="kawaii-card p-4 bg-white relative cursor-pointer active:scale-[0.98]" onclick="${hasDetails ? `toggleDetails('${eventId}', this)` : ''}">${event.highlight ? '<div class="absolute top-0 right-0 bg-kawaii-accent text-white text-[10px] font-black px-3 py-1 rounded-bl-xl rounded-tr-lg shadow-sm">IMPORTANT</div>' : ''}<div class="flex items-baseline gap-3 mb-1"><span class="font-black text-xl text-kawaii-text font-mono opacity-80">${event.time}</span></div><h4 class="text-base font-bold text-gray-700 mb-1 leading-snug">${event.desc}</h4>${event.note ? `<p class="text-xs text-kawaii-primary font-bold flex items-center gap-1"><i class="fas fa-star"></i> ${event.note}</p>` : ''}${hasDetails ? `<div id="${eventId}" class="event-details text-sm text-gray-500"><p class="mb-3 leading-relaxed bg-gray-50 p-3 rounded-xl">${event.details}</p><div class="flex gap-2">${event.mapLink ? `<a href="${event.mapLink}" target="_blank" class="px-3 py-1 bg-blue-50 text-blue-400 rounded-full text-xs font-bold hover:bg-blue-100 transition-colors" onclick="event.stopPropagation()">📍 地圖</a>` : ''}</div></div><div class="absolute bottom-2 right-3 opacity-20 text-gray-400 expand-icon transition-transform duration-300"><i class="fas fa-chevron-down"></i></div>` : ''}</div></div>`;
             });
             container.innerHTML = html;
