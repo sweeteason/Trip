@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
@@ -58,6 +58,10 @@
         .speaking { border-color: #FF9EAA; background-color: #FFF0F5; }
         .speaking i { animation: pulse 1s infinite; color: #FF9EAA; }
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
+        
+        /* Coupon Card Styles */
+        .coupon-btn { transition: all 0.2s; border: 1px solid #eee; }
+        .coupon-btn:active { transform: scale(0.95); background-color: #f9fafb; }
     </style>
 </head>
 <body class="font-sans flex flex-col relative text-kawaii-text selection:bg-kawaii-primary selection:text-white">
@@ -289,7 +293,63 @@
         </div>
 
         <div id="tab-info" class="tab-content space-y-5">
-             <div class="bg-white rounded-3xl p-5 shadow-soft border border-gray-50">
+            <div class="bg-gradient-to-r from-red-50 to-pink-50 rounded-3xl p-5 shadow-soft border border-red-100 relative overflow-hidden">
+                <div class="absolute -right-6 -top-6 text-8xl text-red-200 opacity-20 rotate-12"><i class="fas fa-ticket-alt"></i></div>
+                <h3 class="font-black text-xl mb-4 text-red-500 flex items-center gap-2 relative z-10">
+                    <i class="fas fa-tags animate-bounce-slow"></i> 購物折價券 (Coupons)
+                </h3>
+                <p class="text-[10px] text-gray-500 mb-3 font-bold relative z-10">💡 結帳前請點擊圖案，出示畫面給店員掃描。</p>
+                <div class="grid grid-cols-2 gap-3 relative z-10">
+                    <a href="https://japanportal.donki-global.com/coupon/cp001_zhtw.html" target="_blank" class="coupon-btn bg-white p-3 rounded-xl shadow-sm flex flex-col items-center gap-2 text-center group">
+                        <div class="w-10 h-10 rounded-full bg-[#FFF500] text-black border-2 border-black flex items-center justify-center text-xl font-bold group-hover:scale-110 transition-transform"><span class="text-xs">ド</span></div>
+                        <div>
+                            <span class="block text-sm font-black text-gray-700">唐吉軻德</span>
+                            <span class="block text-[9px] text-white bg-red-400 px-2 py-0.5 rounded-full mt-1">最高 10%+5%</span>
+                        </div>
+                    </a>
+
+                    <a href="https://www.taxfreeshops.jp/img/tieup2/coupon_zhtw.jpg?202508" target="_blank" class="coupon-btn bg-white p-3 rounded-xl shadow-sm flex flex-col items-center gap-2 text-center group">
+                        <div class="w-10 h-10 rounded-full bg-red-600 text-white flex items-center justify-center text-xl group-hover:scale-110 transition-transform"><i class="fas fa-camera"></i></div>
+                        <div>
+                            <span class="block text-sm font-black text-gray-700">BicCamera</span>
+                            <span class="block text-[9px] text-white bg-red-400 px-2 py-0.5 rounded-full mt-1">10%+7%</span>
+                        </div>
+                    </a>
+
+                    <a href="https://cdn.likejapan.com/wp-content/uploads/2025/03/240313-likejapan-Matsumoto-coupon-HK.jpg" target="_blank" class="coupon-btn bg-white p-3 rounded-xl shadow-sm flex flex-col items-center gap-2 text-center group">
+                        <div class="w-10 h-10 rounded-full bg-blue-600 text-white border-2 border-yellow-400 flex items-center justify-center text-xl group-hover:scale-110 transition-transform"><span class="text-[10px] font-black">清</span></div>
+                        <div>
+                            <span class="block text-sm font-black text-gray-700">松本清</span>
+                            <span class="block text-[9px] text-white bg-blue-400 px-2 py-0.5 rounded-full mt-1">最高 7% OFF</span>
+                        </div>
+                    </a>
+
+                    <a href="https://cdn.likejapan.com/wp-content/uploads/2025/04/250425-likejapan-SapporoDrugStore-coupon-HK.jpg" target="_blank" class="coupon-btn bg-white p-3 rounded-xl shadow-sm flex flex-col items-center gap-2 text-center group">
+                        <div class="w-10 h-10 rounded-full bg-blue-400 text-white flex items-center justify-center text-xl group-hover:scale-110 transition-transform"><i class="fas fa-snowflake"></i></div>
+                        <div>
+                            <span class="block text-sm font-black text-gray-700">札幌藥妝</span>
+                            <span class="block text-[9px] text-white bg-blue-400 px-2 py-0.5 rounded-full mt-1">北海道必買</span>
+                        </div>
+                    </a>
+
+                    <a href="https://d1grca2t3zpuug.cloudfront.net/2023/08/daikokucoupon-1751874722.webp" target="_blank" class="coupon-btn bg-white p-3 rounded-xl shadow-sm flex flex-col items-center gap-2 text-center group">
+                        <div class="w-10 h-10 rounded-full bg-orange-500 text-white flex items-center justify-center text-xl group-hover:scale-110 transition-transform"><i class="fas fa-capsules"></i></div>
+                        <div>
+                            <span class="block text-sm font-black text-gray-700">大國藥妝</span>
+                            <span class="block text-[9px] text-white bg-orange-400 px-2 py-0.5 rounded-full mt-1">便宜好逛</span>
+                        </div>
+                    </a>
+
+                    <a href="https://www.taxfreeshops.jp/img/tieup4/coupon_zhtw.jpg?v=2025" target="_blank" class="coupon-btn bg-white p-3 rounded-xl shadow-sm flex flex-col items-center gap-2 text-center group">
+                        <div class="w-10 h-10 rounded-full bg-red-500 text-white flex items-center justify-center text-xl group-hover:scale-110 transition-transform"><i class="fas fa-plus-square"></i></div>
+                        <div>
+                            <span class="block text-sm font-black text-gray-700">SUNDRUG</span>
+                            <span class="block text-[9px] text-white bg-red-400 px-2 py-0.5 rounded-full mt-1">最高 7% OFF</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="bg-white rounded-3xl p-5 shadow-soft border border-gray-50">
                 <div class="flex items-center gap-3 mb-4"><span class="w-8 h-8 rounded-full bg-kawaii-primary/20 flex items-center justify-center text-kawaii-primary text-xs"><i class="fas fa-bed"></i></span><h3 class="font-black text-lg text-kawaii-text">住宿資訊</h3></div>
                 <div class="pl-2 border-l-4 border-kawaii-primary/30 ml-2"><h4 class="text-base font-black text-kawaii-text">Hotel Vista Sapporo Odori</h4><p class="text-xs text-gray-400 font-bold">ホテルビスタ札幌 [大通]</p></div>
                 <div class="mt-4 space-y-2 text-sm font-medium text-gray-600 bg-gray-50 p-4 rounded-2xl">
